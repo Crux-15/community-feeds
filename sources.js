@@ -1,40 +1,12 @@
 'use strict';
 
 /*
- * YOUR LIST OF SOURCES. Edit this file freely.
- *
- * Each source has:
- *   name      a label shown at the bottom of each post
- *   type      'rss'        a site with an automatic feed (best option)
- *             'page'       no feed, so we watch a news page for new article links
- *             'codeforces' Codeforces contest calendar (official API)
- *             'clist'      contests from many platforms through clist.by (free key needed)
- *             'devpost'    hackathons from Devpost
- *   url       the feed, API or news page address
- *   enabled   set to false to switch a source off
- *   every     how often to check, in minutes (default 30)
- *   requires  names of .env settings the source needs. If one is missing, the source is skipped.
- *   targets   where to post. Each target has:
- *               to:         SCHOLARSHIP, PHD_MS, IELTS, GRE, WEBINAR, CONTESTS or COMPETITIONS
- *                           (these match the WEBHOOK_... lines in your .env)
- *               match:      optional. Only items whose text matches this pattern go to that channel.
- *               exclude:    optional. Items matching this pattern do NOT go to that channel.
- *               flagFunded: optional. true marks posts that mention full funding, free travel or
- *                           accommodation with [FUNDED] and a gold colour.
- *
- * Extra settings for some types:
- *   page:               linkPrefix (required), exclude, stripFromTitle
- *   rss:                stripPublisher (for Google News: removes " - Publisher" from titles)
- *   codeforces / clist: remindMinutes, for example [60] or [1440, 60]. A "starting soon" reminder
- *                       is posted when a contest is that many minutes away. Default [60].
- *   clist:              platforms (only these hosts), excludePlatforms
- *   devpost:            minPrize (skip hackathons with a smaller total cash prize)
- *
- * After any change, test with:  node --env-file=.env feeds.js --check
- *
- * HOW REAL-TIME IS THIS? The script asks each source for news on a schedule (the "every"
- * setting), so a new post shows up in Discord within that many minutes of the source
- * publishing it. It is not instant, and it can only report what these sources publish.
+ * YOUR LIST OF SOURCES. Edit freely.
+ *   name, type (rss, page, codeforces, clist, devpost), url, enabled, every (minutes),
+ *   requires (settings needed), targets: [{ to, match, exclude, flagFunded }]
+ *   to = SCHOLARSHIP, PHD_MS, IELTS, GRE, WEBINAR, CONTESTS or COMPETITIONS
+ *   page needs linkPrefix. rss can use stripPublisher. contests can use remindMinutes.
+ * Test after any change with the cloud check run. New posts appear within "every" minutes.
  */
 
 const PHD_OR_MS = /\b(ph\.?d|doctora\w*|master'?s?|m\.?sc|m\.?s\.?|postgraduate|graduate)\b/i;
@@ -52,6 +24,15 @@ const COMPETITION_WORDS = new RegExp(
   ].join('|'),
   'i',
 );
+
+// Words that mean "something you can act on": applications opening, deadlines, calls.
+// Used for official sites whose news is mostly alumni stories, so only the useful posts go through.
+const APPLY_WORDS = /applicat|\bapply\b|deadline|now open|\bopens?\b|call for|nominat|intake/i;
+
+// Bangladesh SHED notices are often in Bangla. These match scholarships and fellowships in both languages.
+const BD_SCHOLARSHIP = /scholarship|fellowship|MEXT|বৃত্তি|স্কলারশিপ|ফেলোশিপ|উচ্চশিক্ষা|উচ্চ শিক্ষা/i;
+// ...but skip the school-level stipends and junior scholarships that also appear there.
+const BD_SKIP = /উপবৃত্তি|জুনিয়র|প্রাথমিক|junior|\bstipends?\b|সমাপনী/i;
 
 // Google News search as a feed. Looks at the last "days" days.
 const googleNews = (query, days) =>
@@ -165,6 +146,104 @@ module.exports = [
     enabled: true,
     targets: [{ to: 'SCHOLARSHIP' }, { to: 'PHD_MS', match: PHD_OR_MS }],
   },
+  // ------------------------------------------------------------------
+  // OFFICIAL SCHOLARSHIP SITES. NEW and not confirmed yet: run the cloud check to see which work.
+  // Government and university sites sometimes refuse automated visits, so some may show FAILED.
+  // ------------------------------------------------------------------
+  {
+    // Hungarian government scholarship. News page lists every announcement as /news/new/<id>-<title>.
+    name: 'Stipendium Hungaricum',
+    type: 'page',
+    url: 'https://apply.stipendiumhungaricum.hu/news',
+    linkPrefix: 'https://apply.stipendiumhungaricum.hu/news/new/',
+    every: 60,
+    enabled: true,
+    targets: [{ to: 'SCHOLARSHIP' }, { to: 'PHD_MS' }],
+  },
+  {
+    // UK government one-year master's scholarship. Most of its news is alumni stories,
+    // so only posts about applications, deadlines and calls are posted.
+    name: 'Chevening news',
+    type: 'page',
+    url: 'https://www.chevening.org/news/',
+    linkPrefix: 'https://www.chevening.org/news/',
+    exclude: /\/news\/(page|category|tag)(\/|$)/i,
+    every: 60,
+    enabled: true,
+    targets: [
+      { to: 'SCHOLARSHIP', match: APPLY_WORDS },
+      { to: 'PHD_MS', match: APPLY_WORDS },
+    ],
+  },
+  {
+    // UK Commonwealth master's and PhD scholarships. Same idea: only application news.
+    name: 'Commonwealth Scholarship Commission',
+    type: 'rss',
+    url: 'https://cscuk.fcdo.gov.uk/feed/',
+    every: 60,
+    enabled: true,
+    targets: [
+      { to: 'SCHOLARSHIP', match: APPLY_WORDS },
+      { to: 'PHD_MS', match: APPLY_WORDS },
+    ],
+  },
+  {
+    // Bangladesh Secondary and Higher Education Division notice board (government nominations
+    // for MEXT, Hungary, China, Korea and others). Only scholarship notices are posted.
+    // If your check shows FAILED here, the site is probably blocking foreign servers.
+    name: 'Bangladesh SHED notices',
+    type: 'page',
+    url: 'https://shed.gov.bd/site/view/notices',
+    linkPrefix: 'https://shed.gov.bd/site/notice',
+    every: 60,
+    enabled: true,
+    targets: [{ to: 'SCHOLARSHIP', match: BD_SCHOLARSHIP, exclude: BD_SKIP }],
+  },
+
+  // ------------------------------------------------------------------
+  // NEWS ABOUT THE BIG NAMED PROGRAMS (Erasmus Mundus, DAAD, Fulbright, MEXT and more).
+  // These sites have no feed of their own, so we watch the news for them instead.
+  // ------------------------------------------------------------------
+  {
+    name: 'News: Europe programs',
+    type: 'rss',
+    url: googleNews(
+      '("Erasmus Mundus" OR DAAD OR "Swedish Institute" OR "Stipendium Hungaricum" OR "Eiffel scholarship") ' +
+        '(applications OR "now open" OR deadline OR "call for applications")',
+      3,
+    ),
+    stripPublisher: true,
+    every: 30,
+    enabled: true,
+    targets: [{ to: 'SCHOLARSHIP' }, { to: 'PHD_MS', match: PHD_OR_MS }],
+  },
+  {
+    name: 'News: UK and US programs',
+    type: 'rss',
+    url: googleNews(
+      '(Chevening OR "Commonwealth Scholarship" OR Fulbright OR "Gates Cambridge" OR "Rhodes Scholarship" OR "Knight-Hennessy") ' +
+        '(applications OR "now open" OR deadline)',
+      3,
+    ),
+    stripPublisher: true,
+    every: 30,
+    enabled: true,
+    targets: [{ to: 'SCHOLARSHIP' }, { to: 'PHD_MS', match: PHD_OR_MS }],
+  },
+  {
+    name: 'News: Asian government programs',
+    type: 'rss',
+    url: googleNews(
+      '(MEXT OR "Korean Government Scholarship" OR KGSP OR "Chinese Government Scholarship" OR "Turkiye Burslari" OR "Turkiye Scholarships") ' +
+        '(applications OR "now open" OR deadline OR "fully funded")',
+      3,
+    ),
+    stripPublisher: true,
+    every: 30,
+    enabled: true,
+    targets: [{ to: 'SCHOLARSHIP' }, { to: 'PHD_MS', match: PHD_OR_MS }],
+  },
+
   {
     // Failed on your PC ("fetch failed"), so it is switched off. Turn it on to retry.
     name: 'Scholarship Positions',
@@ -174,11 +253,13 @@ module.exports = [
     targets: [{ to: 'SCHOLARSHIP' }, { to: 'PHD_MS', match: PHD_OR_MS }],
   },
   {
-    // This site refused automated access (HTTP 403), so it is switched off.
+    // Refused your PC (HTTP 403). Trying again from GitHub's servers, which are a different address.
+    // If your cloud check still says FAILED, change enabled back to false.
     name: 'Scholars4Dev',
     type: 'rss',
     url: 'https://www.scholars4dev.com/feed/',
-    enabled: false,
+    every: 30,
+    enabled: true,
     targets: [{ to: 'SCHOLARSHIP' }, { to: 'PHD_MS', match: PHD_OR_MS }],
   },
 
