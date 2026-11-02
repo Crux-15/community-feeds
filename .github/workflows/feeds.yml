@@ -1,0 +1,82 @@
+name: Community feeds
+
+on:
+  schedule:
+    # About every 10 minutes. Odd minutes avoid GitHub's busiest moments (:00 and :30).
+    - cron: '7,17,27,37,47,57 * * * *'
+  workflow_dispatch:
+    inputs:
+      mode:
+        description: 'run = post new items.  check = only test the sources and post nothing.'
+        type: choice
+        options:
+          - run
+          - check
+        default: run
+
+permissions:
+  contents: write
+
+concurrency:
+  group: community-feeds
+  cancel-in-progress: false
+
+jobs:
+  feeds:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Get the files
+        uses: actions/checkout@v4
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install
+        run: npm ci || npm install
+
+      - name: Check the sources
+        shell: bash
+        env:
+          MODE: ${{ inputs.mode }}
+          WEBHOOK_SCHOLARSHIP: ${{ secrets.WEBHOOK_SCHOLARSHIP }}
+          WEBHOOK_PHD_MS: ${{ secrets.WEBHOOK_PHD_MS }}
+          WEBHOOK_IELTS: ${{ secrets.WEBHOOK_IELTS }}
+          WEBHOOK_GRE: ${{ secrets.WEBHOOK_GRE }}
+          WEBHOOK_WEBINAR: ${{ secrets.WEBHOOK_WEBINAR }}
+          WEBHOOK_CONTESTS: ${{ secrets.WEBHOOK_CONTESTS }}
+          WEBHOOK_COMPETITIONS: ${{ secrets.WEBHOOK_COMPETITIONS }}
+          CLIST_USERNAME: ${{ secrets.CLIST_USERNAME }}
+          CLIST_API_KEY: ${{ secrets.CLIST_API_KEY }}
+        run: |
+          if [ "$MODE" = "check" ]; then
+            node feeds.js --check
+          else
+            node feeds.js --once
+          fi
+
+      - name: Save what was already posted
+        if: always()
+        shell: bash
+        run: |
+          git config user.name "feeds-bot"
+          git config user.email "feeds-bot@users.noreply.github.com"
+          if [ -f seen.json ]; then git add seen.json; fi
+          if git diff --cached --quiet; then
+            echo "Nothing new to save."
+          else
+            git commit -m "Update list of posted items"
+            for attempt in 1 2 3; do
+              if git pull --rebase --autostash && git push; then
+                echo "Saved."
+                exit 0
+              fi
+              echo "Could not save yet (try $attempt of 3). Waiting."
+              sleep 5
+            done
+            echo "Could not save the list of posted items."
+            exit 1
+          fi
