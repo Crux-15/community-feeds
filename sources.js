@@ -34,6 +34,74 @@ const BD_SCHOLARSHIP = /scholarship|fellowship|MEXT|বৃত্তি|স্ক
 // ...but skip the school-level stipends and junior scholarships that also appear there.
 const BD_SKIP = /উপবৃত্তি|জুনিয়র|প্রাথমিক|junior|\bstipends?\b|সমাপনী/i;
 
+// Combine several patterns into one.
+const anyOf = (...parts) => new RegExp(parts.map((r) => r.source).join('|'), 'i');
+
+// You want scholarships outside Asia and the Middle East. Posts that mention these places
+// or programs are left out of the scholarship channels. (Country names like China or India
+// are only matched as "in China" and so on, because posts about Germany often say
+// "open to students from China, India...".)
+const ASIA_ME = new RegExp(
+  [
+    '\\b(mext|kgsp|gks|burslari|hkpfs|kaust|kfupm|masdar|nazarbayev|tsinghua|fudan|zhejiang|kaist|postech|yonsei|nanyang)\\b',
+    '\\b(japan(ese)?|korea(n)?|taiwan(ese)?|hong kong|singapore|malaysia(n)?|thai(land)?|vietnam(ese)?|indonesia(n)?|philippine(s)?|brunei|saudi|qatar(i)?|kuwait(i)?|bahrain|oman|uae|emirates|dubai|abu dhabi|israel(i)?|iran(ian)?|iraq(i)?|jordan|lebanon|turkey|t[uü]rkiye|turkish|kazakhstan|uzbekistan)\\b',
+    '\\b(beijing|shanghai|shenzhen|tokyo|kyoto|osaka|seoul|riyadh|doha|kuala lumpur|bangkok)\\b',
+    '\\b(in|at|to) (china|india|pakistan|bangladesh|nepal|sri lanka)\\b',
+    '\\bchinese (government|university|universities)\\b',
+    '\\bpeking university\\b',
+    '\\biccr\\b',
+  ].join('|'),
+  'i',
+);
+// The same idea for Bangla notices (Japan, China, Korea, Saudi Arabia, Turkey, Malaysia, Singapore, Thailand, India, Gulf)
+const BD_ASIA_ME = /(?<![\u0980-\u09FF])(জাপান|চীন|কোরিয়া|সৌদি|তুরস্ক|মালয়েশিয়া|সিঙ্গাপুর|থাইল্যান্ড|ভারত|কাতার|কুয়েত|ইরান|ইরাক|দুবাই|আরব আমিরাত)/;
+
+// ----------------------------------------------------------------------
+// COMPUTER SCIENCE FILTER (for scholarship and PhD/MS posts)
+// Most scholarship titles do not name a field, so there are two modes:
+//   CS_STRICT = false  (recommended) post a scholarship unless it clearly names ONLY another field
+//                      (nursing, law, MBA, agriculture and so on). Scholarships open to all subjects stay.
+//   CS_STRICT = true   post only when the title or snippet names computer science or a related field.
+//                      Much fewer posts, and many good all-subject scholarships (Chevening, Erasmus) are lost.
+// ----------------------------------------------------------------------
+const CS_STRICT = false;
+
+const CS_FIELDS = new RegExp(
+  [
+    '\\bcomputers?\\b', 'computing', '\\bcs\\b', 'software', '\\bai\\b', 'artificial intelligence',
+    'machine learning', 'deep learning', '\\bml\\b', 'data science', 'data analytics', 'big data',
+    'data mining', 'text mining', 'cyber ?security', 'information technology', 'information systems',
+    'informatics', 'robotics', 'autonomous', '\\bstem\\b(?! cell)', 'mathematic', 'statistic',
+    'electrical', 'electronic', 'telecommunication', '\\bict\\b', 'digital', 'quantum', 'blockchain',
+    'fintech', 'computational', 'networking', '\\bhci\\b', 'natural language',
+    'science and technology', 'engineering and technology', 'technology and engineering',
+  ].join('|'),
+  'i',
+);
+const OTHER_FIELDS = new RegExp(
+  [
+    'nursing', 'midwifery', 'medicine', 'medical', '\\bmbbs\\b', 'dental', 'dentistry', 'pharmac',
+    'veterinar', 'public health', 'health sciences', 'healthcare', 'health care', 'epidemiology',
+    'nutrition', 'physiotherapy', '\\blaw\\b', '\\bllm\\b', '\\blegal\\b', '\\bmba\\b',
+    'business administration', 'business school', 'marketing', 'accounting', 'journalism',
+    'fine arts', 'performing arts', 'creative arts', 'visual arts', 'music', '\\bfilm\\b', 'theatre',
+    'theater', 'theology', 'religious studies', 'humanities', 'literature', 'history', 'philosophy',
+    'sociology', 'psychology', 'anthropology', 'teacher training', 'pedagog', 'social work',
+    'political science', 'international relations', 'diplomacy', 'public policy', 'public administration',
+    'agricultur', 'forestry', 'fisheries', 'architecture', 'urban planning', 'tourism', 'hospitality',
+    '\\bsports\\b', 'civil engineering', 'chemical engineering', 'mechanical engineering', 'petroleum',
+    '\\bmining\\b', 'geology', 'peace studies', 'gender studies',
+  ].join('|'),
+  'i',
+);
+// Skip rule used by the scholarship channels:
+//  strict:  skip anything that names no CS field.
+//  normal:  skip only items that name another field and no CS field.
+const NO_CS = `^(?![\\s\\S]*(?:${CS_FIELDS.source}))`;
+const FIELD_SKIP = new RegExp(CS_STRICT ? NO_CS : `${NO_CS}[\\s\\S]*(?:${OTHER_FIELDS.source})`, 'i');
+// Everything the generic scholarship sources leave out: Asia and the Middle East, and other fields.
+const SKIP = anyOf(ASIA_ME, FIELD_SKIP);
+
 // Google News search as a feed. Looks at the last "days" days.
 const googleNews = (query, days) =>
   'https://news.google.com/rss/search?q=' +
@@ -128,8 +196,8 @@ module.exports = [
     every: 15,
     enabled: true,
     targets: [
-      { to: 'SCHOLARSHIP', match: /scholarship|fellowship|funded|grant/i, exclude: COMPETITION_WORDS },
-      { to: 'PHD_MS', match: PHD_OR_MS },
+      { to: 'SCHOLARSHIP', match: /scholarship|fellowship|funded|grant/i, exclude: anyOf(COMPETITION_WORDS, SKIP) },
+      { to: 'PHD_MS', match: PHD_OR_MS, exclude: SKIP },
       { to: 'COMPETITIONS', match: COMPETITION_WORDS, flagFunded: true },
     ],
   },
@@ -144,7 +212,7 @@ module.exports = [
     stripPublisher: true,
     every: 30,
     enabled: true,
-    targets: [{ to: 'SCHOLARSHIP' }, { to: 'PHD_MS', match: PHD_OR_MS }],
+    targets: [{ to: 'SCHOLARSHIP', exclude: SKIP }, { to: 'PHD_MS', match: PHD_OR_MS, exclude: SKIP }],
   },
   // ------------------------------------------------------------------
   // OFFICIAL SCHOLARSHIP SITES. NEW and not confirmed yet: run the cloud check to see which work.
@@ -197,51 +265,52 @@ module.exports = [
     linkPrefix: 'https://shed.gov.bd/site/notice',
     every: 60,
     enabled: true,
-    targets: [{ to: 'SCHOLARSHIP', match: BD_SCHOLARSHIP, exclude: BD_SKIP }],
+    targets: [{ to: 'SCHOLARSHIP', match: BD_SCHOLARSHIP, exclude: anyOf(BD_SKIP, ASIA_ME, BD_ASIA_ME) }],
   },
 
   // ------------------------------------------------------------------
-  // NEWS ABOUT THE BIG NAMED PROGRAMS (Erasmus Mundus, DAAD, Fulbright, MEXT and more).
-  // These sites have no feed of their own, so we watch the news for them instead.
+  // SCHOLARSHIP NEWS BY REGION: Europe, North America, Australia and New Zealand.
+  // These sites have no feed of their own, so we watch the news about them instead.
+  // Each one is checked every 30 minutes. Switch any off with enabled: false.
   // ------------------------------------------------------------------
+  ...[
+    ['Germany',
+      '(DAAD OR "study in Germany" OR "Konrad Adenauer" OR "Friedrich Ebert" OR "Hanns Seidel" OR "Heinrich Böll" OR "Max Planck")'],
+    ['Netherlands',
+      '("TU Delft" OR "University of Amsterdam" OR "Maastricht University" OR "Eindhoven University of Technology" OR "University of Twente" OR "Leiden University" OR "Utrecht University" OR "University of Groningen" OR "NL Scholarship" OR Nuffic)'],
+    ['Ireland',
+      '("Government of Ireland" OR "Ireland Fellows" OR "Trinity College Dublin" OR "University College Dublin" OR "University of Galway" OR "University College Cork" OR "Dublin City University" OR "University of Limerick")'],
+    ['UK',
+      '(Chevening OR "Commonwealth Scholarship" OR "Rhodes Scholarship" OR "Gates Cambridge" OR "Clarendon Scholarship" OR "Reach Oxford" OR "Edinburgh Global" OR "Imperial College London" OR "University of Manchester" OR "University of Glasgow")'],
+    ['US and Canada',
+      '(Fulbright OR "Knight-Hennessy" OR Vanier OR "Lester B. Pearson" OR "Canada Graduate Scholarship" OR "University of Toronto" OR "University of British Columbia" OR "University of Waterloo" OR "McGill University")'],
+    ['Australia and New Zealand',
+      '("Australia Awards" OR "Manaaki New Zealand" OR "University of Melbourne" OR "University of Sydney" OR UNSW OR "Monash University" OR "Australian National University" OR "University of Auckland")'],
+    ['other Europe',
+      '("Erasmus Mundus" OR "Swedish Institute" OR "Eiffel Excellence" OR "Campus France" OR "Swiss Government Excellence" OR "ETH Zurich" OR EPFL OR KTH OR "Aalto University" OR "University of Helsinki" OR OeAD OR "VLIR-UOS" OR NAWA OR "Invest Your Talent" OR "Czech Government" OR "Estonian Government")'],
+  ].map(([place, who]) => ({
+    name: `News: ${place}`,
+    type: 'rss',
+    url: googleNews(who + ' (scholarship OR fellowship OR stipend OR "fully funded")', 3),
+    stripPublisher: true,
+    every: 30,
+    enabled: true,
+    targets: [{ to: 'SCHOLARSHIP', exclude: SKIP }, { to: 'PHD_MS', match: PHD_OR_MS, exclude: SKIP }],
+  })),
   {
-    name: 'News: Europe programs',
+    // Computer science and AI: funded PhD positions, doctoral networks and fellowships, in any country
+    // outside Asia and the Middle East.
+    name: 'News: funded CS and AI PhD or MS',
     type: 'rss',
     url: googleNews(
-      '("Erasmus Mundus" OR DAAD OR "Swedish Institute" OR "Stipendium Hungaricum" OR "Eiffel scholarship") ' +
-        '(applications OR "now open" OR deadline OR "call for applications")',
+      '("computer science" OR "artificial intelligence" OR "machine learning" OR "data science" OR "software engineering") ' +
+        '("fully funded" OR "funded PhD" OR "PhD position" OR "PhD fellowship" OR "doctoral network" OR "Marie Curie" OR "ELLIS PhD")',
       3,
     ),
     stripPublisher: true,
     every: 30,
     enabled: true,
-    targets: [{ to: 'SCHOLARSHIP' }, { to: 'PHD_MS', match: PHD_OR_MS }],
-  },
-  {
-    name: 'News: UK and US programs',
-    type: 'rss',
-    url: googleNews(
-      '(Chevening OR "Commonwealth Scholarship" OR Fulbright OR "Gates Cambridge" OR "Rhodes Scholarship" OR "Knight-Hennessy") ' +
-        '(applications OR "now open" OR deadline)',
-      3,
-    ),
-    stripPublisher: true,
-    every: 30,
-    enabled: true,
-    targets: [{ to: 'SCHOLARSHIP' }, { to: 'PHD_MS', match: PHD_OR_MS }],
-  },
-  {
-    name: 'News: Asian government programs',
-    type: 'rss',
-    url: googleNews(
-      '(MEXT OR "Korean Government Scholarship" OR KGSP OR "Chinese Government Scholarship" OR "Turkiye Burslari" OR "Turkiye Scholarships") ' +
-        '(applications OR "now open" OR deadline OR "fully funded")',
-      3,
-    ),
-    stripPublisher: true,
-    every: 30,
-    enabled: true,
-    targets: [{ to: 'SCHOLARSHIP' }, { to: 'PHD_MS', match: PHD_OR_MS }],
+    targets: [{ to: 'SCHOLARSHIP', exclude: ASIA_ME }, { to: 'PHD_MS', exclude: ASIA_ME }],
   },
 
   {
@@ -250,7 +319,7 @@ module.exports = [
     type: 'rss',
     url: 'https://scholarship-positions.com/feed/',
     enabled: false,
-    targets: [{ to: 'SCHOLARSHIP' }, { to: 'PHD_MS', match: PHD_OR_MS }],
+    targets: [{ to: 'SCHOLARSHIP', exclude: SKIP }, { to: 'PHD_MS', match: PHD_OR_MS, exclude: SKIP }],
   },
   {
     // Refused your PC (HTTP 403). Trying again from GitHub's servers, which are a different address.
@@ -260,7 +329,7 @@ module.exports = [
     url: 'https://www.scholars4dev.com/feed/',
     every: 30,
     enabled: true,
-    targets: [{ to: 'SCHOLARSHIP' }, { to: 'PHD_MS', match: PHD_OR_MS }],
+    targets: [{ to: 'SCHOLARSHIP', exclude: SKIP }, { to: 'PHD_MS', match: PHD_OR_MS, exclude: SKIP }],
   },
 
   // ------------------------------------------------------------------
