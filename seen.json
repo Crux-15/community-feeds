@@ -362,7 +362,8 @@
   "CBMiqgFBVV95cUxPSXliYnZBdHFUUGhvVnBlSzZoTDFZYS1vUGd2N3Mwald0cGVWeF9wNXNPdlBIdEt2SDZhUnk0ZF9YWHJkMVZWcHpPVWVZUF83WXc1Wnk5S2FUb2pTUG1fUW95cmxWRy1yNlF3dTZNWDJxRmI3ZVlvYTNHS0VseU5lMzY1RzdkajJSeVUtQV9Hbzk2SXJneklpVm9HU2QtUlBndFZVRXpubVNFZw",
   "CBMiZ0FVX3lxTFAwdUR3bDZhUkFOV3F4bnlRaVRIdllxX1B5N094Q1FjazRCZHc0RmVrdUV4M3Rkbm1qR2VHVUdJcGZ5R3VFSkV3YUgzaUo4RHFJd3A5MmN0UmZxdWtmc3RiYkRfY1h5NFU",
   "CBMie0FVX3lxTE9tVTRCQUIwa3dXRDVtLS1rZGFxUkZ6dEJMM21wS2hlUDhGSDBBZy1XWi1VbF9jYkM4Y2dqTWtmaGctZ2VKMmRwSGE4UkM0Mml2NnRmRENqd0xCTklmTWZwTko3Sm5weGZZckJ3bHhzRF9UR2Y4Wjg1VFVIMA",
-  "CBMi3gFBVV95cUxPUUZNS2hMTVh4WXJEVmJvNGh2cV9oRnB4ZUEwQk5xYlVpaHQ5TUJOdlBVd1p4QkdWOGNZRFpUZTh5VDlEWG9wckZFMU9lUFhOTUl3Rll2TFNmcnAyampCbV9ETHhuUVRXU1RPTjJNUFFDMElaVW54YTM1SEJvaUhRYmRyYmZ0Vmh6VWF3WHl2OHBIaWJ2dll0WGJuaVZ3bkJvaTRVYkpUVk04OTRkNVVTSGd4aGZTZ3JBeVRzU3NKTU8wRzk4OG5XcTRodEd3dC10WDlBNGE1ZHBmLXR3TUE"
+  "CBMi3gFBVV95cUxPUUZNS2hMTVh4WXJEVmJvNGh2cV9oRnB4ZUEwQk5xYlVpaHQ5TUJOdlBVd1p4QkdWOGNZRFpUZTh5VDlEWG9wckZFMU9lUFhOTUl3Rll2TFNmcnAyampCbV9ETHhuUVRXU1RPTjJNUFFDMElaVW54YTM1SEJvaUhRYmRyYmZ0Vmh6VWF3WHl2OHBIaWJ2dll0WGJuaVZ3bkJvaTRVYkpUVk04OTRkNVVTSGd4aGZTZ3JBeVRzU3NKTU8wRzk4OG5XcTRodEd3dC10WDlBNGE1ZHBmLXR3TUE",
+  "CBMiqwFBVV95cUxOQXFIc2lBUW9FUnozdUtSQmdYMlZnbjZSNWhPM0M5Z2dvT2I1UFdrVWUxUkhaMmtjVHZ1eDh4RnY1TDNsZWo1N2t6VmZCZ0wyZ19DQTVicW9yOVQ5NEttejBhWVJaSEEydHFRRmtoOG1TWTVzUW8yVzg2U2lRQmNvRngwWVN1QmtaUUtvYkF6ZEpObXpfSUpacWFQZ3N4WkE4T0hEbUZMdUhyLTQ"
  ],
  "News: Netherlands": [
   "CBMiiwFBVV95cUxQX19SdUQ2WXFFNDhhNUFrN0xiX0k1ZkJiS1ppb25ndno2N3FMZGhDaHZMNVdLeUdSdW03cVh3RG40Qk4wUGlYdHM4ZFJKcFFGb2x6czVzTl9WNXJ0ejA0Q09aaU9tZV9vZWZDV3FYYmZzSHRqNmREQWtTSnVrMXJRRHltY3c4SWFqVTJJ",
@@ -1372,6 +1373,21 @@
    "u": "news.google.com/rss/articles/cbminwfbvv95cuxpqlvmtte1tjrnv0z3mk5uufhqzf9nwwdnrkllbdl5nzlsr3zobklyv3h0vlfsehbis3paq0fonjnvzg1heejrtvdtos1hcufjd0h5sxhyqzcwwfp2n1ztntziu28xzjbozurwzudzq3nfexbgcmlpmvngewttblzpdnfplu10q1hyu3ddcfntvxdptnnlswzjohdzdlvqc2m",
    "title": "UK Announces Fully Funded Chevening Scholarships for Pakistani Students",
    "t": 1793812923334
+  },
+  {
+   "k": [
+    "ceps",
+    "heinrich",
+    "böll",
+    "stiftung",
+    "climate",
+    "leadership",
+    "young",
+    "leaders"
+   ],
+   "u": "news.google.com/rss/articles/cbmiqwfbvv95cuxoqxfic2lbuw9funozdutsqmdymlznbjzsnwhpm0m5z2dvt2i1ufdrvwuxukhammtjvhz1edh4rny1tdnszwo1n2t6vmzcz0wyz19dqtvicw9yovq5nettejbhwvjaseeydhfrrmtoog1twtvzuw8yvzg2u2lrqmnvrngwwvn1qmtauutvykf6zepobxpfsupacwfqz3n4wke4t0hebuzmduhyltq",
+   "title": "The CEPS/Heinrich Böll Stiftung Climate Leadership Programme 2027 for young climate leaders (Fully Funded to Brussels, B",
+   "t": 1793823329861
   }
  ]
 }
