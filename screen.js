@@ -45,6 +45,35 @@ const NEWS_TERMS = join([
   '\\bhow to\\b', 'step[- ]by[- ]step', '\\bguide\\b', '\\btips\\b', 'checklist',
 ]);
 
+// Internships are not scholarships. A title that mentions one is dropped unless it also names a scholarship, fellowship or degree.
+const INTERNSHIP = /\binterns(hips?)?\b/i;
+const INTERNSHIP_OK = /scholarship|fellowship|ph\.?d|\bmasters?\b|master'?s/i;
+
+// Words that show a title is a call you can act on. Used when the page cannot be opened (Google News links),
+// to tell an open scholarship from a news story that only mentions one.
+const CALL_SIGNS = join([
+  'fully[- ]funded', '\\bfunded\\b', '\\bapply\\b', 'applications?', '\\bopen(s|ed)?\\b', 'deadline', 'call for',
+  'accepting', 'invites?', 'offers?', 'offering', 'announces?', 'launch(es|ed)?', 'available', 'opportunit\\w+',
+  'seeking', 'recruit\\w*', 'for\\b.{0,40}\\b(students?|applicants?|candidates?|researchers?|scholars?)\\b',
+]);
+
+// Scholarships limited to one other nationality or region ("for Pakistani students", "for Africans").
+// They are still posted, but marked [CHECK] so you can read who may apply. Anything that names Bangladesh is left alone.
+const NATIONS = [
+  'african', 'afghan', 'albanian', 'algerian', 'angolan', 'arab', 'argentin(?:e|ian)', 'armenian', 'azerbaijani', 'brazilian',
+  'cambodian', 'cameroonian', 'caribbean', 'chilean', 'chinese', 'colombian', 'congolese', 'egyptian', 'ethiopian', 'filipino',
+  'georgian', 'ghanaian', 'indian', 'indonesian', 'iranian', 'iraqi', 'jordanian', 'kazakh', 'kenyan', 'korean', 'kyrgyz',
+  'latin american', 'lebanese', 'malawian', 'malaysian', 'maldivian', 'mexican', 'middle eastern', 'mongolian', 'moroccan',
+  'mozambican', 'myanmar', 'nepali', 'nepalese', 'nigerian', 'pacific islander', 'pakistani', 'palestinian', 'peruvian',
+  'rwandan', 'saudi', 'senegalese', 'sierra leonean', 'somali', 'south african', 'sri lankan', 'sudanese', 'syrian',
+  'tajik', 'tanzanian', 'thai', 'tunisian', 'turkish', 'ugandan', 'ukrainian', 'uzbek', 'vietnamese', 'yemeni', 'zambian', 'zimbabwean',
+];
+const PEOPLE = 'students?|applicants?|citizens|nationals|candidates|scholars|graduates|researchers|professionals|learners|youth';
+const NATION_LIMITED = new RegExp(
+  `\\bfor\\s+(?:the\\s+)?(?:[\\w-]+\\s+){0,2}?(${NATIONS.join('|')})s?\\b|\\b(${NATIONS.join('|')})\\s+(?:${PEOPLE})\\b`,
+  'i',
+);
+
 // 2. Level -------------------------------------------------------------------------------------
 const UNDER_TITLE = /undergraduate|\bundergrad\b|\bbachelor(s|'s)?\b|\bb\.?sc\.?\b|\bb\.?eng\b|high[- ]school|secondary school|school (students|leavers)|\bdiploma\b/i;
 const UNDER_PAGE = /undergraduate|\bundergrad\b|high[- ]school|secondary school|school (students|leavers)|bachelor'?s? (programmes?|programs?|studies|scholarships?|students|courses?)|\bb\.?sc\.? (programmes?|programs?|students)|first[- ]degree/i;
@@ -262,6 +291,7 @@ async function screenItem(item, src, state, opts = {}) {
   const news = hit(NEWS_TERMS, title);
   if (news) return drop(`looks like news, not a call ("${news}")`);
   if (!FUNDING_TERMS.test(base)) return drop('not about a scholarship, fellowship or funded position');
+  if (INTERNSHIP.test(title) && !INTERNSHIP_OK.test(title)) return drop('internship, not a scholarship');
   const years = (title.match(/\b20\d\d\b/g) || []).map(Number);
   if (years.length && Math.max(...years) < YEAR) return drop(`old (${Math.max(...years)})`);
 
@@ -291,17 +321,31 @@ async function screenItem(item, src, state, opts = {}) {
       if (fn.kind === 'unknown') fn = fundingOf(full);
     }
   }
+  // The page was read in full and never mentions Master's, PhD or postgraduate study: a programme, event or short course, not a degree
+  if (pageRead && lv.level === 'unknown') return drop("page was read and does not mention Master's or PhD");
   if (fd.field === 'unknown' && src && src.defaultField) fd = { field: src.defaultField, hit: 'this source is only about CS and AI' };
+
+  // The page could not be read and the title is vague: without any sign of an open call it is most likely a news story
+  if (!pageRead && (fd.field === 'unknown' || lv.level === 'unknown') && !CALL_SIGNS.test(title) && !years.some((y) => y >= YEAR)) {
+    return drop('no sign of an open call, and the page could not be read');
+  }
 
   // 5. already posted?
   const dup = duplicateOf(item, state);
   if (dup) return drop(`already posted as "${dup}"`);
 
-  const check = fd.field === 'unknown' || lv.level === 'unknown';
+  // limited to students of another country? (only looked for in the title and snippet, and not if Bangladesh is named)
+  const nm = /bangladesh|bangladeshi/i.test(base) ? null : NATION_LIMITED.exec(base);
+  const nation = nm ? (nm.slice(1).find(Boolean) || '').toLowerCase() : '';
+
+  const check = fd.field === 'unknown' || lv.level === 'unknown' || !!nation;
   const tags = [];
   if (fn.kind === 'full') tags.push('FULLY FUNDED');
   if (check) tags.push('CHECK');
   const missing = [fd.field === 'unknown' ? 'field' : '', lv.level === 'unknown' ? 'level' : ''].filter(Boolean).join(' and ');
+  const notes = [];
+  if (missing) notes.push(`could not confirm the ${missing}${pageRead ? '' : ' (page not readable)'}`);
+  if (nation) notes.push(`it may be limited to "${nation}" applicants, so check that Bangladesh is allowed`);
   return {
     post: true,
     channel: lv.level === 'grad' ? 'PHD_MS' : 'SCHOLARSHIP',
@@ -312,7 +356,7 @@ async function screenItem(item, src, state, opts = {}) {
     check,
     tags,
     pageRead,
-    note: check ? `could not confirm the ${missing}${pageRead ? '' : ' (page not readable)'}` : '',
+    note: notes.join('; '),
     summary: `level: ${LEVEL_NAME[lv.level]}${lv.hit ? ` ("${lv.hit}")` : ''} | field: ${FIELD_NAME[fd.field]}${fd.hit ? ` ("${fd.hit}")` : ''} | funding: ${FUNDING_NAME[fn.kind]}${fn.hit ? ` ("${fn.hit}")` : ''}`,
   };
 }
@@ -360,6 +404,11 @@ if (require.main === module) {
     ['Maastricht University High Potential Scholarship 2027 for master students', '', true],
     ['Chevening Scholarships 2027/28: applications now open', '', true],
     ['Doctoral network on AI: 12 funded PhD positions across Europe 2027', '', true],
+    // real posts seen in the cloud on Nov 4
+    ['Makerere Graduate Loses Polish Scholarship Over Expired Course Listing', '', false],
+    ['TechCongress Programs Internship 2027', 'Fellowship for tech people', false],
+    ['UK announces fully funded Master’s scholarships for students', '', true],
+    ['Simon Fraser University Offers Fully Funded Master’s and PhD Research Opportunities in Canada', '', true],
   ];
   let bad = 0;
   (async () => {
