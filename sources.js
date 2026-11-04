@@ -6,6 +6,7 @@
  *   requires (settings needed), targets: [{ to, match, exclude, flagFunded }]
  *   to = SCHOLARSHIP, PHD_MS, IELTS, GRE, WEBINAR, CONTESTS or COMPETITIONS
  *   page needs linkPrefix. rss can use stripPublisher. contests can use remindMinutes.
+ *   screen: true  checks every scholarship item first (real call, Master's/PhD, CS or all fields, no repeats). See screen.js.
  * Test after any change with the cloud check run. New posts appear within "every" minutes.
  */
 
@@ -55,52 +56,6 @@ const ASIA_ME = new RegExp(
 );
 // The same idea for Bangla notices (Japan, China, Korea, Saudi Arabia, Turkey, Malaysia, Singapore, Thailand, India, Gulf)
 const BD_ASIA_ME = /(?<![\u0980-\u09FF])(জাপান|চীন|কোরিয়া|সৌদি|তুরস্ক|মালয়েশিয়া|সিঙ্গাপুর|থাইল্যান্ড|ভারত|কাতার|কুয়েত|ইরান|ইরাক|দুবাই|আরব আমিরাত)/;
-
-// ----------------------------------------------------------------------
-// COMPUTER SCIENCE FILTER (for scholarship and PhD/MS posts)
-// Most scholarship titles do not name a field, so there are two modes:
-//   CS_STRICT = false  (recommended) post a scholarship unless it clearly names ONLY another field
-//                      (nursing, law, MBA, agriculture and so on). Scholarships open to all subjects stay.
-//   CS_STRICT = true   post only when the title or snippet names computer science or a related field.
-//                      Much fewer posts, and many good all-subject scholarships (Chevening, Erasmus) are lost.
-// ----------------------------------------------------------------------
-const CS_STRICT = false;
-
-const CS_FIELDS = new RegExp(
-  [
-    '\\bcomputers?\\b', 'computing', '\\bcs\\b', 'software', '\\bai\\b', 'artificial intelligence',
-    'machine learning', 'deep learning', '\\bml\\b', 'data science', 'data analytics', 'big data',
-    'data mining', 'text mining', 'cyber ?security', 'information technology', 'information systems',
-    'informatics', 'robotics', 'autonomous', '\\bstem\\b(?! cell)', 'mathematic', 'statistic',
-    'electrical', 'electronic', 'telecommunication', '\\bict\\b', 'digital', 'quantum', 'blockchain',
-    'fintech', 'computational', 'networking', '\\bhci\\b', 'natural language',
-    'science and technology', 'engineering and technology', 'technology and engineering',
-  ].join('|'),
-  'i',
-);
-const OTHER_FIELDS = new RegExp(
-  [
-    'nursing', 'midwifery', 'medicine', 'medical', '\\bmbbs\\b', 'dental', 'dentistry', 'pharmac',
-    'veterinar', 'public health', 'health sciences', 'healthcare', 'health care', 'epidemiology',
-    'nutrition', 'physiotherapy', '\\blaw\\b', '\\bllm\\b', '\\blegal\\b', '\\bmba\\b',
-    'business administration', 'business school', 'marketing', 'accounting', 'journalism',
-    'fine arts', 'performing arts', 'creative arts', 'visual arts', 'music', '\\bfilm\\b', 'theatre',
-    'theater', 'theology', 'religious studies', 'humanities', 'literature', 'history', 'philosophy',
-    'sociology', 'psychology', 'anthropology', 'teacher training', 'pedagog', 'social work',
-    'political science', 'international relations', 'diplomacy', 'public policy', 'public administration',
-    'agricultur', 'forestry', 'fisheries', 'architecture', 'urban planning', 'tourism', 'hospitality',
-    '\\bsports\\b', 'civil engineering', 'chemical engineering', 'mechanical engineering', 'petroleum',
-    '\\bmining\\b', 'geology', 'peace studies', 'gender studies',
-  ].join('|'),
-  'i',
-);
-// Skip rule used by the scholarship channels:
-//  strict:  skip anything that names no CS field.
-//  normal:  skip only items that name another field and no CS field.
-const NO_CS = `^(?![\\s\\S]*(?:${CS_FIELDS.source}))`;
-const FIELD_SKIP = new RegExp(CS_STRICT ? NO_CS : `${NO_CS}[\\s\\S]*(?:${OTHER_FIELDS.source})`, 'i');
-// Everything the generic scholarship sources leave out: Asia and the Middle East, and other fields.
-const SKIP = anyOf(ASIA_ME, FIELD_SKIP);
 
 // Google News search as a feed. Looks at the last "days" days.
 const googleNews = (query, days) =>
@@ -188,35 +143,10 @@ module.exports = [
   // ------------------------------------------------------------------
   // SCHOLARSHIPS AND MS/PHD  ->  #scholarship-alerts, #phd-ms-openings
   // ------------------------------------------------------------------
-  {
-    // Confirmed working on your PC. Competitions found here also go to #competition-announcements.
-    name: 'Opportunity Desk',
-    type: 'rss',
-    url: 'https://opportunitydesk.org/feed/',
-    every: 15,
-    enabled: true,
-    targets: [
-      { to: 'SCHOLARSHIP', match: /scholarship|fellowship|funded|grant/i, exclude: anyOf(COMPETITION_WORDS, SKIP) },
-      { to: 'PHD_MS', match: PHD_OR_MS, exclude: SKIP },
-      { to: 'COMPETITIONS', match: COMPETITION_WORDS, flagFunded: true },
-    ],
-  },
-  {
-    // NEW and not confirmed yet. Run --check to see if it works.
-    name: 'News: funded MS and PhD',
-    type: 'rss',
-    url: googleNews(
-      '("fully funded" OR "full scholarship") (masters OR "master\'s" OR PhD OR "graduate program") scholarship',
-      2,
-    ),
-    stripPublisher: true,
-    every: 30,
-    enabled: true,
-    targets: [{ to: 'SCHOLARSHIP', exclude: SKIP }, { to: 'PHD_MS', match: PHD_OR_MS, exclude: SKIP }],
-  },
-  // ------------------------------------------------------------------
-  // OFFICIAL SCHOLARSHIP SITES. NEW and not confirmed yet: run the cloud check to see which work.
+  // OFFICIAL SCHOLARSHIP SITES (not screened, always posted). NEW and not confirmed yet: run the cloud check to see which work.
   // Government and university sites sometimes refuse automated visits, so some may show FAILED.
+  // They are listed FIRST on purpose: if a news site reports the same call later, it is dropped as already posted.
+  // Each official item is posted once (not in two channels).
   // ------------------------------------------------------------------
   {
     // Hungarian government scholarship. News page lists every announcement as /news/new/<id>-<title>.
@@ -226,7 +156,7 @@ module.exports = [
     linkPrefix: 'https://apply.stipendiumhungaricum.hu/news/new/',
     every: 60,
     enabled: true,
-    targets: [{ to: 'SCHOLARSHIP' }, { to: 'PHD_MS' }],
+    targets: [{ to: 'SCHOLARSHIP' }],
   },
   {
     // UK government one-year master's scholarship. Most of its news is alumni stories,
@@ -238,10 +168,7 @@ module.exports = [
     exclude: /\/news\/(page|category|tag)(\/|$)/i,
     every: 60,
     enabled: true,
-    targets: [
-      { to: 'SCHOLARSHIP', match: APPLY_WORDS },
-      { to: 'PHD_MS', match: APPLY_WORDS },
-    ],
+    targets: [{ to: 'PHD_MS', match: APPLY_WORDS }],
   },
   {
     // UK Commonwealth master's and PhD scholarships. Same idea: only application news.
@@ -250,10 +177,7 @@ module.exports = [
     url: 'https://cscuk.fcdo.gov.uk/feed/',
     every: 60,
     enabled: true,
-    targets: [
-      { to: 'SCHOLARSHIP', match: APPLY_WORDS },
-      { to: 'PHD_MS', match: APPLY_WORDS },
-    ],
+    targets: [{ to: 'PHD_MS', match: APPLY_WORDS }],
   },
   {
     // Bangladesh Secondary and Higher Education Division notice board (government nominations
@@ -268,6 +192,37 @@ module.exports = [
     targets: [{ to: 'SCHOLARSHIP', match: BD_SCHOLARSHIP, exclude: anyOf(BD_SKIP, ASIA_ME, BD_ASIA_ME) }],
   },
 
+  // ------------------------------------------------------------------
+  // NEWS SITES AND AGGREGATORS: every item is checked by screen.js before it is posted.
+  // ------------------------------------------------------------------
+  {
+    // Confirmed working on your PC. Competitions found here also go to #competition-announcements.
+    name: 'Opportunity Desk',
+    screen: true,
+    type: 'rss',
+    url: 'https://opportunitydesk.org/feed/',
+    every: 15,
+    enabled: true,
+    targets: [
+      { to: 'SCHOLARSHIP', match: /scholarship|fellowship|funded|grant/i, exclude: anyOf(COMPETITION_WORDS, ASIA_ME) },
+      { to: 'PHD_MS', match: PHD_OR_MS, exclude: anyOf(COMPETITION_WORDS, ASIA_ME) },
+      { to: 'COMPETITIONS', match: COMPETITION_WORDS, flagFunded: true },
+    ],
+  },
+  {
+    // NEW and not confirmed yet. Run --check to see if it works.
+    name: 'News: funded MS and PhD',
+    screen: true,
+    type: 'rss',
+    url: googleNews(
+      '("fully funded" OR "full scholarship") (masters OR "master\'s" OR PhD OR "graduate program") scholarship',
+      2,
+    ),
+    stripPublisher: true,
+    every: 30,
+    enabled: true,
+    targets: [{ to: 'SCHOLARSHIP', exclude: ASIA_ME }, { to: 'PHD_MS', exclude: ASIA_ME }],
+  },
   // ------------------------------------------------------------------
   // SCHOLARSHIP NEWS BY REGION: Europe, North America, Australia and New Zealand.
   // These sites have no feed of their own, so we watch the news about them instead.
@@ -290,17 +245,20 @@ module.exports = [
       '("Erasmus Mundus" OR "Swedish Institute" OR "Eiffel Excellence" OR "Campus France" OR "Swiss Government Excellence" OR "ETH Zurich" OR EPFL OR KTH OR "Aalto University" OR "University of Helsinki" OR OeAD OR "VLIR-UOS" OR NAWA OR "Invest Your Talent" OR "Czech Government" OR "Estonian Government")'],
   ].map(([place, who]) => ({
     name: `News: ${place}`,
+    screen: true,
     type: 'rss',
     url: googleNews(who + ' (scholarship OR fellowship OR stipend OR "fully funded")', 3),
     stripPublisher: true,
     every: 30,
     enabled: true,
-    targets: [{ to: 'SCHOLARSHIP', exclude: SKIP }, { to: 'PHD_MS', match: PHD_OR_MS, exclude: SKIP }],
+    targets: [{ to: 'SCHOLARSHIP', exclude: ASIA_ME }, { to: 'PHD_MS', exclude: ASIA_ME }],
   })),
   {
     // Computer science and AI: funded PhD positions, doctoral networks and fellowships, in any country
     // outside Asia and the Middle East.
     name: 'News: funded CS and AI PhD or MS',
+    screen: true,
+    defaultField: 'cs', // this search is already about CS and AI, so the field counts as CS
     type: 'rss',
     url: googleNews(
       '("computer science" OR "artificial intelligence" OR "machine learning" OR "data science" OR "software engineering") ' +
@@ -316,20 +274,22 @@ module.exports = [
   {
     // Failed on your PC ("fetch failed"), so it is switched off. Turn it on to retry.
     name: 'Scholarship Positions',
+    screen: true,
     type: 'rss',
     url: 'https://scholarship-positions.com/feed/',
     enabled: false,
-    targets: [{ to: 'SCHOLARSHIP', exclude: SKIP }, { to: 'PHD_MS', match: PHD_OR_MS, exclude: SKIP }],
+    targets: [{ to: 'SCHOLARSHIP', exclude: ASIA_ME }, { to: 'PHD_MS', exclude: ASIA_ME }],
   },
   {
     // Refused your PC (HTTP 403). Trying again from GitHub's servers, which are a different address.
     // If your cloud check still says FAILED, change enabled back to false.
     name: 'Scholars4Dev',
+    screen: true,
     type: 'rss',
     url: 'https://www.scholars4dev.com/feed/',
     every: 30,
     enabled: true,
-    targets: [{ to: 'SCHOLARSHIP', exclude: SKIP }, { to: 'PHD_MS', match: PHD_OR_MS, exclude: SKIP }],
+    targets: [{ to: 'SCHOLARSHIP', exclude: ASIA_ME }, { to: 'PHD_MS', exclude: ASIA_ME }],
   },
 
   // ------------------------------------------------------------------

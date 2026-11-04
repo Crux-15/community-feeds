@@ -9,6 +9,7 @@
  * Commands (run in the project folder, in Command Prompt):
  *   node --env-file=.env feeds.js --check             test every source, post nothing
  *   node --env-file=.env feeds.js --test-webhooks     send one test message to each channel
+ *   node --env-file=.env feeds.js --preview           show what would be posted or dropped, post nothing
  *   node --env-file=.env feeds.js --latest 3          post the newest 3 items of each source now
  *                                                     (for contests: the next 3 upcoming ones)
  *   node --env-file=.env feeds.js --latest 3 --only Codeforces
@@ -27,6 +28,7 @@ const fs = require('fs');
 const path = require('path');
 const Parser = require('rss-parser');
 const SOURCES = require('./sources.js');
+const screen = require('./screen.js');
 
 const STATE_FILE = path.join(__dirname, 'seen.json');
 const USER_AGENT = 'Mozilla/5.0 (compatible; CommunityFeedBot/1.0)';
@@ -427,14 +429,32 @@ function targetsFor(item, src) {
   );
 }
 
-async function deliver(item, src, build) {
-  for (const target of targetsFor(item, src)) {
+const isScholarship = (t) => t.to === 'SCHOLARSHIP' || t.to === 'PHD_MS';
+
+// Sources marked screen: true have their scholarship items checked by screen.js first.
+// A good item is posted once, in one channel (PHD_MS for Master's/PhD, otherwise SCHOLARSHIP).
+async function deliver(item, src, build, state) {
+  let targets = targetsFor(item, src);
+  let verdict = null;
+  if (src.screen && targets.some(isScholarship)) {
+    verdict = await screen.screenItem(item, src, state || {});
+    targets = targets.filter((t) => !isScholarship(t));
+    if (verdict.post) {
+      const order = verdict.channel === 'PHD_MS' ? ['PHD_MS', 'SCHOLARSHIP'] : ['SCHOLARSHIP', 'PHD_MS'];
+      targets.unshift({ to: order.find((k) => validWebhook(webhookFor(k))) || order[0] });
+    } else {
+      log('  skipped "' + item.title.slice(0, 90) + '": ' + verdict.reason);
+    }
+  }
+  for (const target of targets) {
     const hook = webhookFor(target.to);
     if (!validWebhook(hook)) {
-      log(`  ! WEBHOOK_${target.to} is missing or not a webhook address in .env, skipped`);
+      log('  ! WEBHOOK_' + target.to + ' is missing or not a webhook address in .env, skipped');
       continue;
     }
-    await postEmbed(hook, build(target));
+    const embed = build(target);
+    await postEmbed(hook, verdict && isScholarship(target) ? screen.decorate(embed, verdict) : embed);
+    if (state && isScholarship(target)) screen.remember(state, item);
     await sleep(PAUSE_BETWEEN_POSTS_MS);
   }
 }
@@ -468,7 +488,7 @@ async function runFeedSource(src, state, { latest = 0 } = {}) {
   let posted = 0;
   try {
     for (const item of fresh) {
-      await deliver(item, src, (t) => makeEmbed(item, src.name, t));
+      await deliver(item, src, (t) => makeEmbed(item, src.name, t), state);
       seen.add(item.id); // only remembered after it was really delivered
       posted++;
     }
@@ -642,6 +662,48 @@ async function check() {
   console.log('');
 }
 
+// Shows what the screening would post and drop for the newest items, without posting or saving anything
+async function preview() {
+  console.log('\nPREVIEW: this shows what would be posted and what would be dropped. Nothing is posted or saved.\n');
+  screen.setBudget(40);
+  const sim = { __posted: JSON.parse(JSON.stringify(loadState().__posted || [])) };
+  const short = (s) => (s.length > 110 ? s.slice(0, 109) + '...' : s);
+  let would = 0;
+  let dropped = 0;
+  for (const src of SOURCES.filter((s) => s.enabled !== false && s.screen)) {
+    const missing = missingEnv(src);
+    if (missing.length) {
+      console.log('[SKIP] ' + src.name + ': needs ' + missing.join(' and '));
+      continue;
+    }
+    let items;
+    try {
+      items = (await readSource(src)).slice(0, 15);
+    } catch (err) {
+      console.log('[FAIL] ' + src.name + ': ' + err.message);
+      continue;
+    }
+    console.log('== ' + src.name + ' (' + items.length + ' newest items)');
+    for (const item of items) {
+      if (!targetsFor(item, src).some(isScholarship)) {
+        console.log('   SKIP  not for the scholarship channels: ' + short(item.title));
+        continue;
+      }
+      const v = await screen.screenItem(item, src, sim);
+      if (v.post) {
+        would++;
+        screen.remember(sim, item);
+        console.log('   POST  ' + v.tags.map((t) => '[' + t + '] ').join('') + '-> ' + v.channel + '  ' + short(item.title));
+        console.log('         ' + v.summary + (v.note ? ' | ' + v.note : ''));
+      } else {
+        dropped++;
+        console.log('   DROP  ' + v.reason + ': ' + short(item.title));
+      }
+    }
+  }
+  console.log('\nWould post ' + would + ' and drop ' + dropped + ' of the newest items shown above.\n');
+}
+
 async function testWebhooks() {
   for (const key of WEBHOOK_KEYS) {
     const hook = webhookFor(key);
@@ -672,6 +734,7 @@ async function main() {
   const args = process.argv.slice(2);
   if (args.includes('--check')) return check();
   if (args.includes('--test-webhooks')) return testWebhooks();
+  if (args.includes('--preview')) return preview();
 
   const only = argValue(args, '--only') || '';
   if (args.includes('--latest')) return runOnce({ latest: parseInt(argValue(args, '--latest'), 10) || 1, only });
