@@ -1,8 +1,5 @@
 {
- "__reminded": {
-  "Other platforms (clist.by)|cl-71790868|60": 1793802600,
-  "Codeforces|cf-2283|60": 1793802900
- },
+ "__reminded": {},
  "Codeforces": [
   "cf-2283",
   "cf-2284",
@@ -65,7 +62,8 @@
   "devpost-32017",
   "devpost-32023",
   "devpost-31771",
-  "devpost-32035"
+  "devpost-32035",
+  "devpost-31890"
  ],
  "News: funded hackathons": [
   "CBMibEFVX3lxTFBScU5SQVpFS3hFSFktSzdXNnFHZU9RQ3QtUTFzLUZYeXZTTWRuSkhyTGdpVnM2bkw3MlpFbWphRWNudm0wdk03dWxRaFc1OVRiS1F3MUd1Ymk4dGFheFJEbDVZYUZ4QVdCSFZaUQ",
@@ -143,7 +141,8 @@
   "CBMiogFBVV95cUxOWmk2YXBSTW9NUkhIQUNBbnlVa2NmLXBqV1B4WXRVNzlGQU9IbDZUeXN6NmQ0ek5HRDVjWGZKSzJNdHNMSE9WZTBRR3pxeklzNmQwbzBKbVloYXVMRlg2S2VwZ3hYWnBsWGlraDUyTzRLN0FHWUhkLXg3aEk3M1loQjFobkFUeVFMZ3RfaVZ1dGN1eWE0WThueXBQcXRQT1c2MkE",
   "CBMikAFBVV95cUxQaURVT1A5VUdvM3dhM2o0WGJ6TGtPZkt0TDdnY2RoVDFOTVRCTWFoaEhCNndNV0VoQ1A2bndoTHhvMEdDM1E1MUpMd3lrMUJuUG5mWjh1bXNVV2RJTFVMMDJ6Q293OW9OcVFPT3FzQ3J4R04zRElUcDlaOExsMWZYREpUX3l1Sm4tc3VNYUtkSDg",
   "CBMiwgFBVV95cUxNN3VxZUhPSDllRHUwelRfZ212Q003Q1JlNHlSNGswd1R0XzJqRGc2Sjg0OV9id0NUdl8xdjZ1VVlaR1dXeExDckF5X2JfZmswTkJDLVkyQV9qQkRYSjdJQjF0bnNmUmNUc1FQaUMzTU9zSmpyUEF5TkRaY0piS1FPdVBvSGo2MjlvV0dyZjFFNXJ6dDRUQmp3MkJpV2dsMGdEU3pfYlZTWG42M3lfM0JQY1l0QjkwRi1QcUVTMDBzY3V5Zw",
-  "CBMivgFBVV95cUxNVFBhWC0xZ3hxRENkZTlaLWFON3VrN1JXRlVVeU9sZi1yREVaRWl0X01CYlpUYkFNNktMY1NLWHc2UGEta296U0NhYlhWM3lqR3FORnpnVmVmQlB2TzM5S0dPYi1uNnBrdXo4dUlEVGdWNnBWODIwMFB3QW1GUU9YRXFVWUZzUnJWNFNXMmxheFdiU3ItTjlBd3pKYUVETU1LTDdKYXhJcXNJOE1CVUN1cU5xdVJSLXlqWUUwTE9n"
+  "CBMivgFBVV95cUxNVFBhWC0xZ3hxRENkZTlaLWFON3VrN1JXRlVVeU9sZi1yREVaRWl0X01CYlpUYkFNNktMY1NLWHc2UGEta296U0NhYlhWM3lqR3FORnpnVmVmQlB2TzM5S0dPYi1uNnBrdXo4dUlEVGdWNnBWODIwMFB3QW1GUU9YRXFVWUZzUnJWNFNXMmxheFdiU3ItTjlBd3pKYUVETU1LTDdKYXhJcXNJOE1CVUN1cU5xdVJSLXlqWUUwTE9n",
+  "CBMilAFBVV95cUxQc0tWbTByME1KZ2hLSmprNTNfaXNrMzZVcFNVTmVGN1ZVdUtGQW42b3JuZzdkM1FEZDltd2RyMHd0SXVMTnFYVzQ3V0c2VnFOQlJ4Z3U4SWZVY0VRaVRQUEpBMDdqMUNfNkM5dXBwc3Y4eUJDdWl6UkZXbTZVQXZsdURKM3Rpb1ZZT1N1LVZxczNzakUw"
  ],
  "News: FinTechathon and WeBank": [],
  "Opportunity Desk": [
@@ -194,7 +193,12 @@
   "https://opportunitydesk.org/?p=179914",
   "https://opportunitydesk.org/?p=179931",
   "https://opportunitydesk.org/?p=179943",
-  "https://opportunitydesk.org/?p=179953"
+  "https://opportunitydesk.org/?p=179953",
+  "https://opportunitydesk.org/?p=179843",
+  "https://opportunitydesk.org/?p=179815",
+  "https://opportunitydesk.org/?p=179956",
+  "https://opportunitydesk.org/?p=179967",
+  "https://opportunitydesk.org/?p=179976"
  ],
  "News: funded MS and PhD": [
   "CBMicEFVX3lxTE9vSzl6Qm1BOTFsRzFoZTU0S2l3cF9la05SZzE5UnhaWDNmUjlfbWtHU2RXMGQzVExuRE5HWkZ3bHI1Qkxfb2J0VTdUNkVwNzJHSTRCOFhjQjVLODVUeC05R1NNbllrb2ZpUWxjQTdZVno",
@@ -252,7 +256,12 @@
   "CBMickFVX3lxTE5XSWRJRUJVdVlaR3dQbXFMcmlySVVjeDhfQm5DVHNMRUlEQm54YlIxclk3VS1sMlhhMnJoZThMaDNYS01PS2Q3UHBuSGZTeHVJd21IS2NFMlkyYkVMVTQ4UldmZUZKakdkbnNTTGRRNk5yUQ",
   "CBMiswFBVV95cUxNOTN2WUlpNGlzbDZTbUU2WE1yMVVHUjhFSzdQMExsQWllVGRKaF9VdHhWN3dscWI3VWlTZkMtM1RUOFhHazh2Nk5yM0ZNbENBYUtyd2dEelpXeDFESngtQWZXVkhtc2xRcW5jZU93RklwMDRxOEtoNnExX2s5TlZ2V0NVWUFzbkxYZzVXdUc2MVpLTVd5Ql83N1E4c1dzb3B0ZGtHOGlJRmFTdE5fSlQ3TUNOaw",
   "CBMidEFVX3lxTE9RVWpMaUFFNFJMcUxULVY0WlFaVUNnU0I4ZDJRLUo0d0x3bFlrSzlLZjZadE45d1VaZHJmR3BkQ0hlUXdzOTRJWUV4empkVzFqVURsWDZLT0RLSUYxd3lkeTBCVHpaZ19hVGlxU2ZuYnJjclBk",
-  "CBMidEFVX3lxTE1BX0JJNUZuMERuMDM4aFZqNmwxT25DcUJNeGtOYU4wd2RfY3BseXo2SVBWSUhMY1JEMXhWQ1h3NGVkYkVEM29IbTdNb2FfN19KOEZ0Z0JVN1N5czAxV3FyVGJuR0YxdnJtTDF6aG45bE00MnJJ"
+  "CBMidEFVX3lxTE1BX0JJNUZuMERuMDM4aFZqNmwxT25DcUJNeGtOYU4wd2RfY3BseXo2SVBWSUhMY1JEMXhWQ1h3NGVkYkVEM29IbTdNb2FfN19KOEZ0Z0JVN1N5czAxV3FyVGJuR0YxdnJtTDF6aG45bE00MnJJ",
+  "CBMivAFBVV95cUxPVU9rbUNlUjVVSGFxQkgzOVZUakdGdTNkQTVWMmJUQkstMUhhTHUzT21BcnNwcU9QWXBpc0RFVW9ERGpXbkNJMl9rRUZGSktIQzZ6OWliV0VZRG04VkdrYmNpSTFPb1VibDQ2RGdRSlFFblVNSDdvX2tkMGRjV1pGSzF6SHBESUk3Zk90OWdKWVhlTlpTTXJCNkljZTBULVh0dXg0MWlsN3AwcGYxMEZfSmkwbDZiVGRyUS1KaNIBwgFBVV95cUxPeG04YnZSaUZsMmpvd1R1bjVLS09URGdIaFJ1TGNEZklmdXkwVUpZa012R2tFaVc0ZlMxcU9QVWZqZTV2TkgwMGk2R0h6U20wNEVaYXJvR3ZaY182ZzJCamFKOFB0RWhWU2x2aWJPeGdFOUcwcEQ1QkpnVjVFSFNJRUpkd0YycldJZ2t2bXlxSUxQVkU4SzZRRWduV2s4WmJvSUhIX043ejY0dGNHTVRzZU9CX21ONlZnNk5KRHhJbUtmUQ",
+  "CBMi1AFBVV95cUxPV0hzbU5SNFdmdDIwbHdoUWdtZVUwc1lXS0I2cm5zV1ZwekhiMUtTMFJNbWFDdE9jX0dna3lMMjFxZ2t2R05iZUVXX2lIMmRpc1I5SmxGT0dpM1ZaSUduTldFVnNGYlZIRjRkVVVuaFlfQmFPV3htUWNGTno4OUE2c0dxc1N0Ymc1Z3lIM3l2UW9ncTI5MWdCaWlwVTRKMjlrTmZXcWdUbFViNzJyTHhYcVQtWGFSbV80NlBLQWtNMmxyQnhMUFBBajVhX3l1MUttT211dQ",
+  "CBMivgFBVV95cUxQYnQwVnk5R3B3clQ4R3V1MF91Rzk3bUtqNkpicFNqbkdYd0poZzVPcVdnSWxncURkWHRoMUt0R0p2UDl1QnEyS2htNEswWlZRWXlwYlNRcjVPNnhFZU1MenE3SV9kandRdDMyTDBvZVo1STJYS1RndURLMzNTSG9UNWlfSFoyODlvLTF3SGhycmhYRENvWmtvX2NJcjAzMzFsZ0pVbVN0TWtYV1VpSUxkMW14UUpWdTdIR3ZsZVdR0gHDAUFVX3lxTE1lalc4MVBvbE1wR0lIdWRjcnBkRXJWamV1TVBGWkxxTXdiNE9iaUtnZEM4dXNWaHdhb2hQQVNwWHF1MVBqN1pWcmIyQ2UzbnppVEM1UzQxYUlaWDQ5MDNWSHQxamduQ3ZkTUFxVFVLUTI4NU8tLWdTTXM2T01PMjNzMFZjYVhBOVAyTF9WcU45a3lETDg2T2llaWtzUVZnSWJTZEZiVDNuQlMwRkNxUjZ0Q2xOOVlNWDhwV3BSdFR5Snk5SQ",
+  "CBMiaEFVX3lxTE8tQlRWZ3B5OU44R2c1YWxxOUthaFNXbWVHZk5OTmZ0OWRvTzFRX1NhbFFlbVpCSjc3MXBBRkViNWJnNUVsVm5YLV9DaFhtcGhPaUFWdzZhYkVoSEMybHJQM1JUZzZPUkFB",
+  "CBMikgFBVV95cUxQanJVSlZNY21WQ1VTX2JDZUp5VjMtSS1BUTYtUTM5MFlTOUk0bG1MdEJsT2hRdTV6MWdUQmVmdGM4bkFDMTdHbE92V2ZQb0FlUnEyWDhoaEhBa2NvOTZuRV9IY0hHMllpbXU4NXpueUdMeWNhZWc5X29wVFZvalN0RVpwSEhWODFwSUQ4X1pCSFlmdw"
  ],
  "IELTS news": [
   "https://ielts.org/news-and-insights/maintaining-trust-in-english-test-scores-for-high-stakes-decisions",
@@ -338,7 +347,8 @@
   "https://www.chevening.org/news/no-child-left-behind-how-a-chevening-fellow-is-transforming-access-to-education-in-nigeria",
   "https://www.chevening.org/news/shuai-wang-on-the-value-of-her-chevening-fellowship-experience",
   "https://www.chevening.org/news/using-technology-to-strengthen-healthcare-through-chevening",
-  "https://www.chevening.org/news/five-free-courses-for-the-next-chapter-of-your-chevening-journey"
+  "https://www.chevening.org/news/five-free-courses-for-the-next-chapter-of-your-chevening-journey",
+  "https://www.chevening.org/news/how-chevening-alumni-are-opening-procurement-opportunities-for-women-entrepreneurs-in-nigeria"
  ],
  "Commonwealth Scholarship Commission": [
   "https://cscuk.fcdo.gov.uk/?p=249329",
@@ -412,7 +422,8 @@
   "CBMivgFBVV95cUxOeDZnZTdjQ0dKbjc1TktqNGNHRk4zTXE4eDhVZno4ZW93M3BVT3ZkVWwzQkp4REdHY2tKQ2xWd0NFcEstNVJmUkFVRWxjRXFvVGc5V04wWTN5bE9HWVhUeVd4VzUxYy1ZS1M4TU1wUV9zM0otWmRmWkdRQlZCNWFXOEFMWFNCd3ZrV3RWWEM3RThkQnFJU0pNeWlhUXEwbmFPY1Rrd25mY2RYd2xTd0M0d1I0anUwR0N6WDBUMlBR",
   "CBMieEFVX3lxTE9fUDFidHpOMHdsZ3VKT2V2bGxLWUJGU04zOWFwZnpvQ1lRZlpFTlItekdxWHRkV3FiR3B2OVZDRldxRmFYVVJRSzhQandoSC1uWWxSa0xkaWl0Y1FUdEpUSy1tQ3NodGxQV3c2N29ROXpmeENXcGhlVg",
   "CBMiakFVX3lxTE81Y3hianpWNVMtYklOR0VTNWJoRXBOMC16Z2JxQWt5Y1FUaXZDU3NNdDYxLXhTN0t2Zm5LeWdfaUF0SmZERHl2ckRXNmtfRFBnUllYdWdPRlY4VUItQk42RE8zOFVPWkhlZ1E",
-  "CBMiakFVX3lxTE4zYTdDWUJsbUo5WXRONm93T20tOVpmN0NtZVVIVUN5YkpxX0RFTjlWcTgzSTNHaGUyYVJLeXNKbVZxUjJDX212QzVtdFlBR08tR1VhQ21TdGtVOVpCU2UtWlRiZm9GeXNyNUE"
+  "CBMiakFVX3lxTE4zYTdDWUJsbUo5WXRONm93T20tOVpmN0NtZVVIVUN5YkpxX0RFTjlWcTgzSTNHaGUyYVJLeXNKbVZxUjJDX212QzVtdFlBR08tR1VhQ21TdGtVOVpCU2UtWlRiZm9GeXNyNUE",
+  "CBMingFBVV95cUxOZUg4RlFLZEIzR0VQRlpxWDE2QzNfa1YxQU1OZ0p4SFhoQnMySXZsRHpUSTB3ZldyZWgyNmJSZl9YS3R4MzBKbW9rRGI3RjFMNEFTd1hSNS1TNXhEd0c2VXNVMVhnZkJqZlpsV2FFYThickt3QWU2NWZBTGJDMTJrSFVsay1sZThqOVRxcnVFR1ktRTlyc1RLYmtOUnJwUQ"
  ],
  "News: Netherlands": [
   "CBMiiwFBVV95cUxQX19SdUQ2WXFFNDhhNUFrN0xiX0k1ZkJiS1ppb25ndno2N3FMZGhDaHZMNVdLeUdSdW03cVh3RG40Qk4wUGlYdHM4ZFJKcFFGb2x6czVzTl9WNXJ0ejA0Q09aaU9tZV9vZWZDV3FYYmZzSHRqNmREQWtTSnVrMXJRRHltY3c4SWFqVTJJ",
@@ -717,7 +728,8 @@
   "CBMickFVX3lxTE5qaUZNeWdnY1FsMzVRcDJqQ1FiMTRjRnpzZ3VDT1N5anplTU93c3ZkMTVLTHpPYWM2WWQ0SkpSeGtCem1Ca0x0NmozeE9YUzJ3SkIzWFJKUU1YRG1zdG5xV3ROVnlXX19STDVDblN2MEJ3UQ",
   "CBMijwFBVV95cUxQSUxqdjlfWEQwMy1BeVVpTmxlVEh0R1NrTS00UWw0XzF3Tzd2MFN1SGhMNkNZTm5oYUMwU1FxdEE4aGQ4TXU4NEFhVXktaVVyUnlnUUZkY3FOZjRENGhOd1RaeDJzc2RCWjZUZEpNQzE5c0pPTGs0cXM0anhwYkhkZC1ZNGtfaUpXTWgza08yOA",
   "CBMickFVX3lxTE1kdldXVmlqQ0VhRE9jRWg3bzRickZ1YWliVFJTSWhIdlZqNTUtSlAzLWc0YmNNNXpzMUhrejk4OTV0cjh3SlllU21TYl9ZUURlOERaSjRicWZSVl9Hd25rZHpNbXZGOW44M051VktpX2RQUdIBd0FVX3lxTE1zN3g0dEUyUFhCNDNYSFg4Y2xqS0szTlRDbnVfN25BX3Y2aFhyT0xsekdwRDZzRjdYd2w3UHNHcnpmb0o5NW1pNWNtdnFWS085VjVGQXN3U1owVEtKM0V2dEpvaG5sbFgtTVF5aWVnYUc1Qklqa0VF",
-  "CBMiggFBVV95cUxPOS11d0JFWGR6Q0o2NXQ4ZW8tTEZHeDZjZTBaTWpQdVJRYlJvYnVfMDhHQnV1blJjMjZCOE9odVpjQ3JrQVBLSHpyQ0o2by1hRTBtZkp1bGN4V0ZoOWFRV1VXeW1KWmNPU05LTVJ0eFVFUndtb2kxUDFKRFVwZ0JyQlh3"
+  "CBMiggFBVV95cUxPOS11d0JFWGR6Q0o2NXQ4ZW8tTEZHeDZjZTBaTWpQdVJRYlJvYnVfMDhHQnV1blJjMjZCOE9odVpjQ3JrQVBLSHpyQ0o2by1hRTBtZkp1bGN4V0ZoOWFRV1VXeW1KWmNPU05LTVJ0eFVFUndtb2kxUDFKRFVwZ0JyQlh3",
+  "CBMigwFBVV95cUxQdmpTWk5WeUYzZ05wSnp4b1ZsaWV3YVZmX2k1aVlCUGtySzBTaE5rQmozakU2T2FBRVREeDQtN1p5elRybzN0WU8tMlBCYUtQalBXUUpaeW5PemNxYkRFRU1MOTdpTm1pY3pXS1BTdXlxcXhKMDRtNm04U1hRRWxKT3AyRQ"
  ],
  "News: UK": [
   "CBMibEFVX3lxTE5NWG1Vems5djBxSW5nY3ZvUnhhN2RqbnloUy00dV9EajBqdmdNSzRjNFZmbDdIOEhuQnB4Y24zcjF3d25QOWJPQlNvcUZBSUFMYUc4Q3l2Q08ySU9sX0VfNnBPS2t6Zks4Z3kycQ",
@@ -1232,7 +1244,11 @@
   "CBMijwFBVV95cUxQdjZ1MlV6QWR4Qkh6Qm1oSVhXN25tVGlPdk5DRG84MmZLRHc5VkdUeWhvSGl5cUNuVWlKVDlEdmxCRjRBeXpaQ0V2NzZPbjFwSkRMR1VyWnBob0lVNnQ0Nk5GeXN1WGxzV2NKa0tVSFJxSEYxSFRoY3MzMlBlUXk0SDBteGVZU0tUa01lU2dWWQ",
   "CBMiiAFBVV95cUxOQWpReS1NYWdKWEg3Z0U2elVYU09sczF6Wll1UUtnVDBDZzlKYkZqWEUzUFpiek1xNTRVOUJYTzFtSjhUcXh5anFDTHVYQTl0dTY5Qm4yVXBDT2hXNXVQTTh4YWhTTVhEOThfSzRJQlpab1lVNFgzYmkyOVJkRmxUbXFDZHFGWXhl",
   "CBMiqgFBVV95cUxQYXRtd09KMkdLUmJva0RVOWpfcHlPdF9GbmhFa0dCbjFXc1dvTVJXcVFfMmJEX1h5MnNULVFicHk3dERZeFZtZHpDZm9VRnhTbnZMZU1XYkREU2ZJMVVuY2VlRHY2eXdIRkgtTzVnMkdYYlhHa1k3eWpXWUNIcFViOWhGTTVsenpDbUppV1BlVy1tYmRvVG1mTXlZcmpDNHNVOHVGRkc5aVp4UQ",
-  "CBMijgFBVV95cUxPdkdMU2dkYWxqYmpMX0ppdmxOd292ZzZPQ1h2cUY0N0ZXNUJXazF2bHUwOHRlblJxMzNzcFBTd2F4TkpzdkF1M0hLX3ZoLUN1ZXZwd2pmVXRqSklkLWVvY3dhNG4wYlA2VXFwOExKNS01WnVIeWFVRUFvQV9QeGtVc1VjZEhNeldacXhFbm9n"
+  "CBMijgFBVV95cUxPdkdMU2dkYWxqYmpMX0ppdmxOd292ZzZPQ1h2cUY0N0ZXNUJXazF2bHUwOHRlblJxMzNzcFBTd2F4TkpzdkF1M0hLX3ZoLUN1ZXZwd2pmVXRqSklkLWVvY3dhNG4wYlA2VXFwOExKNS01WnVIeWFVRUFvQV9QeGtVc1VjZEhNeldacXhFbm9n",
+  "CBMif0FVX3lxTE14UTEzUHMxYjAtQ3ByY0I2WXpXMUtoMk1FSU9iU1c1aDRZcGNldTR0OHctX3l3Q2F6Qmx2enNVU2Uzb0swU0RaY2l1MnhSbUN4ZGZSZXl0UGszdWtTcmxNTVNvbVlEVXdXVDVmUmhIZnhwM1VuTkdsanlMNkJwaVE",
+  "CBMihAFBVV95cUxPQlVLU2JFaDFXeHdZR2tDWHRVNEVvREVOd3FoRUVkS1hudm1Rb3AtbEVZcVJDT056cjJQNWxzUmdGd19NdWhnaFpfZWR5aHQwNHNwUnplUi1kSmg2R3l2SV9fRllya3dKVnd2VFIxTFFkWWhLODE5OVc0VWt6VUhhLTI1OWI",
+  "CBMihwFBVV95cUxOdUxrSXhTY1RZb3NtYmM4alkxUTNJeWlCOS04bWZpQnJRRjNmT1JiNHJXWEhmOHhvamtMekVUTmtabThTLThoMlN0TUEtQzRHdnBpTGtDTFFkUlIxUlFnd0NHNk1QcHphdXhTT1REZVhYVmJNU09JWWRJQktLaFczZGpSOXRwZXc",
+  "CBMiowFBVV95cUxPWVZCN1B0cUQ2UXlCTGFza0NaXzRKMl9sc2Y0am56T3F5eldMVU0zUmwtZXV4Zk45WFVsS2x3YlFMQVAyZFpNcTh4aV85ZDZXb1NjN0hvN3RtOVRDbUJjQWk1VTV3bDhMc19zbzgxMlpRQ2FaTU44Yng1bDY5bmJET0h1XzAxdXVZNVVPN1dtc3A1YS01RzdZeW1DSUtPWXJyVGo0"
  ],
  "News: other Europe": [
   "CBMiQ0FVX3lxTFBsRzEyS3BxRFIyQlV4elhDYTI4bTBTczNtTzJPU2d5ZTBzNnJYLWNxRTdnUlNMdW03TWdMcExmZ1hQZGM",
@@ -1643,6 +1659,59 @@
    "u": "news.google.com/rss/articles/cbmidefvx3lxte1bx0jjnuzumerumdm4afzqnmwxt25dcujnegtoyu4wd2rfy3bsexo2svbwsuhmy1jemxhwq1h3ngvkykvem29ibtdnb2ffn19koez0z0jvn1n5czaxv3fyvgjur0yxdnjttdf6ag45be00mnjj",
    "title": "University of Notre Dame PhD Scholarship in Sustainable Development 2027, Fully Funded Doctoral Opportunity in the USA",
    "t": 1793964828194
+  },
+  {
+   "k": [
+    "reagan",
+    "fascell",
+    "democracy",
+    "fellows"
+   ],
+   "u": "opportunitydesk.org/2026/11/06/reagan-fascell-democracy-fellows-program-2027-2028",
+   "title": "Reagan-Fascell Democracy Fellows Program 2027-2028 (Fully-funded)",
+   "t": 1793989449588
+  },
+  {
+   "k": [
+    "canadian",
+    "opportunities",
+    "research"
+   ],
+   "u": "news.google.com/rss/articles/cbmivafbvv95cuxpvu9rbunlujvvsgfxqkgzovzuakdgdtnkqtvwmmjuqkstmuhhthuzt21bcnnwcu9qwxbpc0rfvw9ergpxbknjml9rruzgsktiqzz6owliv0vzrg04vkdrymnpstfpb1vibdq2rgdrslffblvnsddvx2tkmgrjv1pgszf6shbesuk3zk90owdkwvhltlpttxjcnkljztbulvh0dxg0mwlsn3awcgyxmezfsmkwbdzivgryus1kanibwgfbvv95cuxpeg04ynzsauzsmmpvd1r1bjvls09urgdiafj1tgnezklmdxkwvupza012r2tfavc0zlmxcu9qvwzqztv2tkgwmgk2r0h6u20wnevayxjvr3zay182zzjcamfkofb0rwhwu2x2awjpegdfoucwceq1qkpnvjvfsfnjrupkd0yycldjz2t2bxlxsuxqvku4szzrrwduv2s4wmjvsuhix043ejy0dgnhtvrzzu9cx21onlznnk5krhhjbutmuq",
+   "title": "Canadian University Offers Fully-Funded Master’s and PhD Opportunities in AI Research",
+   "t": 1793989452382
+  },
+  {
+   "k": [
+    "liverpool",
+    "annual",
+    "stipend"
+   ],
+   "u": "news.google.com/rss/articles/cbmivgfbvv95cuxqynqwvnk5r3b3clq4r3v1mf91rzk3butqnkpicfnqbkdyd0pozzvpcvdnswxncurkwhromut0r0p2udl1qneys2htneswwlzrwxlwylnrcjvpnnhfzu1mene3sv9kandrddmytdbvzvo1stjys1rndurlmzntsg9unwlfsfoyodlvltf3sghycmhyrenvwmtvx2njcjazmzfsz0pvbvn0twtyv1vpsuxkmw14uupwdtdir3zszvdr0ghdaufvx3lxte1lalc4mvbvbe1wr0lidwrjcnbkrxjwamv1tvbgwkxxtxdine9iautnzem4dxnwahdhb2hqqvnwwhf1mvbqn1pwcmiyq2uzbnppvem1uzqxyulawdq5mdnwshqxamduq3zktufxvfvluti4nu8tlwdttxm2t01pmjnzmfzjyvhbovaytf9wcu45a3letdg2t2llawtzuvznswjtzezivdnuqlmwrknxujz0q2xoovlnwdhwv3bsdfr5snk5sq",
+   "title": "University of Liverpool Offers Fully-Funded PhD Scholarship With £21,805 Annual Stipend",
+   "t": 1793989454089
+  },
+  {
+   "k": [
+    "napb",
+    "apba",
+    "borlaug",
+    "opportunities",
+    "african",
+    "plant",
+    "breeding"
+   ],
+   "u": "news.google.com/rss/articles/cbmiaefvx3lxte8tqlrwz3b5ou44r2c1ywxxouthafnxbwvhzk5otmz0owrvtzfrx1nhbfflbvpcsjc3mxbbrkvinwjnnuvsvm5ylv9dafhtcghpaufwdzzhykvosemybhjqm1juzzzpukfb",
+   "title": "NAPB-APBA Borlaug Scholarship 2027–2028: Fully Funded Opportunities for African PhD Students in Plant Breeding",
+   "t": 1793989455773
+  },
+  {
+   "k": [
+    "liverpool"
+   ],
+   "u": "news.google.com/rss/articles/cbmikgfbvv95cuxqanjvslzny21wq1vtx2jdzup5vjmtss1butytutm5mfltouk0bg1mdejst2hrdtv6mwduqmvmdgm4bkfdmtdhbe92v2zqb0fluneywdhoaehba2nvotzurv9iy0hhmllpbxu4nxpueudmewnhzwc5x29wvfzvaln0rvpwsehwodfwsuq4x1pcsflmdw",
+   "title": "University of Liverpool Announces Fully Funded PhD Scholarship",
+   "t": 1793989457513
   }
  ]
 }
