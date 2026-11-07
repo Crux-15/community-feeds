@@ -310,8 +310,8 @@ module.exports = [
   {
     // ETS has no news list that a program can read, so GRE news comes from a Google News search
     // (last 14 days): test changes, fees, test dates, score reporting, and universities that
-    // drop or require the GRE. Only titles that contain the word GRE are posted, and the usual
-    // coaching and tips articles are left out.
+    // drop or require the GRE. Only titles that contain GRE and a change or announcement word are
+    // posted, and the usual coaching, tips and how-to articles are left out.
     name: 'News: GRE updates',
     type: 'rss',
     url: googleNews(
@@ -326,9 +326,17 @@ module.exports = [
     targets: [
       {
         to: 'GRE',
-        match: /\bGRE\b/,
+        // The title must contain GRE and a word that signals a change or an announcement
+        // (changes, announces, no longer, waives, drops, fee rise ...). This keeps out the
+        // many "How to book a GRE slot" and "How hard is the GRE" explainers.
+        match: new RegExp(
+          '^(?=.*\\bGRE\\b)(?=.*\\b(?:chang\\w*|announc\\w*|no longer|waiv\\w*|drops?|dropp\\w*|eliminat\\w*|scrap\\w*|abolish\\w*|' +
+            'reinstat\\w*|introduc\\w*|launch\\w*|revis\\w*|replac\\w*|discontinu\\w*|cancel\\w*|suspend\\w*|shorter|shorten\\w*|faster|' +
+            'rise|rises|rising|increase\\w*|hike\\w*|raise\\w*|adds|added|expand\\w*|optional|now (?:accept\\w*|offer\\w*|available))\\b)',
+          'i',
+        ),
         exclude:
-          /\b(tips?|how to|study plan|prep(?:aration)?|courses?|coaching|crack|vocabulary|syllabus|sample|practice|mock|books?|cheat sheet|strategy|strategies|worth it|vs\.?|versus|score calculator)\b/i,
+          /\b(tips?|how to|how hard|how difficult|what to expect|study plan|prep(?:aration)?|courses?|coaching|crack|vocabulary|syllabus|pattern|sample|practice|mock|books?|cheat sheet|strategy|strategies|guide|explained|faqs?|need to know|eligibility|registration|slot|login|worth it|vs\.?|versus|score calculator)\b/i,
       },
     ],
   },
