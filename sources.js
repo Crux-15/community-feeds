@@ -308,13 +308,28 @@ module.exports = [
     targets: [{ to: 'IELTS' }],
   },
   {
-    // Not set up yet: we still need the right ETS news page for GRE updates.
-    // Send me the address and I will fill this in.
-    name: 'GRE news',
-    type: 'page',
-    url: '',
-    linkPrefix: '',
-    enabled: false,
-    targets: [{ to: 'GRE' }],
+    // ETS has no news list that a program can read, so GRE news comes from a Google News search
+    // (last 14 days): test changes, fees, test dates, score reporting, and universities that
+    // drop or require the GRE. Only titles that contain the word GRE are posted, and the usual
+    // coaching and tips articles are left out.
+    name: 'News: GRE updates',
+    type: 'rss',
+    url: googleNews(
+      'GRE (ETS OR "GRE General Test" OR "GRE test" OR "GRE requirement" OR "GRE scores" OR "GRE exam") ' +
+        '(changes OR change OR announces OR announced OR update OR updated OR fee OR "test dates" OR "score reporting" ' +
+        'OR "test format" OR "no longer require" OR "no longer requires" OR waives OR waived OR "test-optional" OR "test optional" OR reinstates)',
+      14,
+    ),
+    stripPublisher: true,
+    every: 60,
+    enabled: true,
+    targets: [
+      {
+        to: 'GRE',
+        match: /\bGRE\b/,
+        exclude:
+          /\b(tips?|how to|study plan|prep(?:aration)?|courses?|coaching|crack|vocabulary|syllabus|sample|practice|mock|books?|cheat sheet|strategy|strategies|worth it|vs\.?|versus|score calculator)\b/i,
+      },
+    ],
   },
 ];
