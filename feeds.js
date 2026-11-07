@@ -200,7 +200,12 @@ async function readRss(src) {
         date: i.isoDate || i.pubDate || null,
       };
     })
-    .filter((i) => i.id);
+    .filter((i) => i.id)
+    // optional maxAgeDays in sources.js: Google News returns old articles when nothing recent matches
+    .filter((i) => {
+      const t = Date.parse(i.date);
+      return !src.maxAgeDays || !t || Date.now() - t <= src.maxAgeDays * 86400000;
+    });
   // newest first (keeps the feed's own order when dates are missing)
   return items
     .map((item, index) => ({ item, index, t: Date.parse(item.date) || 0 }))

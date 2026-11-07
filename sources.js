@@ -321,6 +321,9 @@ module.exports = [
       14,
     ),
     stripPublisher: true,
+    // Google News returns old explainers (some from 2017) when nothing recent matches, so anything
+    // older than this many days is ignored.
+    maxAgeDays: 21,
     every: 60,
     enabled: true,
     targets: [
