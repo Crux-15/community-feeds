@@ -49,6 +49,7 @@ jobs:
           WEBHOOK_WEBINAR: ${{ secrets.WEBHOOK_WEBINAR }}
           WEBHOOK_CONTESTS: ${{ secrets.WEBHOOK_CONTESTS }}
           WEBHOOK_COMPETITIONS: ${{ secrets.WEBHOOK_COMPETITIONS }}
+          JOBS_WEBHOOKS: ${{ secrets.JOBS_WEBHOOKS }}
           CLIST_USERNAME: ${{ secrets.CLIST_USERNAME }}
           CLIST_API_KEY: ${{ secrets.CLIST_API_KEY }}
         run: |

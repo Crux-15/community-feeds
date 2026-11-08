@@ -30,6 +30,15 @@ const Parser = require('rss-parser');
 const SOURCES = require('./sources.js');
 const screen = require('./screen.js');
 
+// Job updates (jobs.js and jobsources.js) are an add-on: everything else works the same without them
+let jobsModule = null;
+let jobsProblem = '';
+try {
+  jobsModule = require('./jobs.js');
+} catch (err) {
+  if (err.code !== 'MODULE_NOT_FOUND') jobsProblem = err.message;
+}
+
 const STATE_FILE = path.join(__dirname, 'seen.json');
 const USER_AGENT = 'Mozilla/5.0 (compatible; CommunityFeedBot/1.0)';
 const MAX_PER_ROUND = 8; // never post more than this many items per source per check
@@ -604,6 +613,21 @@ async function runOnce({ latest = 0, only = '', dueOnly = false } = {}) {
       log(`${src.name}: PROBLEM, ${err.message}`);
     }
   }
+
+  // job updates run in the cloud round (--once) only, never with --latest and never in the PC watcher
+  if (jobsProblem) log(`Job updates: PROBLEM, ${jobsProblem}`);
+  if (jobsModule && !latest && !dueOnly) {
+    try {
+      await jobsModule.run({ state, only, save: () => saveState(state), ctx: { postEmbed, log } });
+    } catch (err) {
+      log(`Job updates: PROBLEM, ${err.message}`);
+      try {
+        saveState(state);
+      } catch (_) {
+        /* nothing more to do */
+      }
+    }
+  }
 }
 
 async function check() {
@@ -663,6 +687,14 @@ async function check() {
     const status = !hook ? 'MISSING' : validWebhook(hook) ? 'looks fine' : 'NOT a webhook address';
     const used = keys.has(key) ? '' : '  (not used by any source)';
     console.log(`  WEBHOOK_${key}: ${status}${used}`);
+  }
+  if (jobsProblem) console.log(`\nJob updates: PROBLEM, ${jobsProblem}`);
+  if (jobsModule) {
+    try {
+      await jobsModule.check(console.log);
+    } catch (err) {
+      console.log(`\nJob updates: PROBLEM, ${err.message}`);
+    }
   }
   console.log('');
 }
