@@ -31,6 +31,7 @@ const BLUE = 0x3498db;
 const USER_AGENT = 'Mozilla/5.0 (compatible; CommunityFeedBot/1.0)';
 const KEEP_SEEN = Number(process.env.JOBS_KEEP_SEEN || 1500); // remembered jobs per source and channel
 const READ_SLOTS = 3; // a known source is read in one of 3 ten-minute slots, so about every 30 minutes
+const RETRY_429_MS = Number(process.env.JOBS_RETRY_MS ?? 4000); // wait before asking again when a site says "too many requests"
 const READ_PARALLEL = Number(process.env.JOBS_PARALLEL || 6);
 const READ_BUDGET_MS = Number(process.env.JOBS_BUDGET_MS || 270000); // stop starting new reads after 4.5 minutes
 const PAUSE_BETWEEN_POSTS_MS = Number(process.env.JOBS_POST_PAUSE_MS ?? 1000);
@@ -69,24 +70,32 @@ function htmlToText(s) {
 
 async function http(url, { method = 'GET', body, headers = {}, json = true, timeout = 25000 } = {}) {
   let res;
-  try {
-    res = await fetch(url, {
-      method,
-      headers: {
-        'User-Agent': USER_AGENT,
-        Accept: json ? 'application/json, text/plain, */*' : 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
-        'Accept-Language': 'en-US,en;q=0.9',
-        ...(body ? { 'Content-Type': 'application/json' } : {}),
-        ...headers,
-      },
-      body: body ? JSON.stringify(body) : undefined,
-      redirect: 'follow',
-      signal: AbortSignal.timeout(timeout),
-    });
-  } catch (err) {
-    if (err.name === 'TimeoutError') throw new Error('timed out after ' + Math.round(timeout / 1000) + ' seconds');
-    const c = err.cause;
-    throw new Error('could not connect' + (c && (c.code || c.message) ? ' (' + (c.code || c.message) + ')' : ''));
+  for (let attempt = 0; attempt < 3; attempt++) {
+    try {
+      res = await fetch(url, {
+        method,
+        headers: {
+          'User-Agent': USER_AGENT,
+          Accept: json ? 'application/json, text/plain, */*' : 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
+          'Accept-Language': 'en-US,en;q=0.9',
+          ...(body ? { 'Content-Type': 'application/json' } : {}),
+          ...headers,
+        },
+        body: body ? JSON.stringify(body) : undefined,
+        redirect: 'follow',
+        signal: AbortSignal.timeout(timeout),
+      });
+    } catch (err) {
+      if (err.name === 'TimeoutError') throw new Error('timed out after ' + Math.round(timeout / 1000) + ' seconds');
+      const c = err.cause;
+      throw new Error('could not connect' + (c && (c.code || c.message) ? ' (' + (c.code || c.message) + ')' : ''));
+    }
+    if (res.status === 429 && attempt < 2) {
+      const wait = Math.min(Number(res.headers.get('retry-after')) * 1000 || RETRY_429_MS, 10000);
+      await sleep(process.env.JOBS_RETRY_MS ? RETRY_429_MS : wait);
+      continue;
+    }
+    break;
   }
   if (!res.ok) throw new Error('HTTP ' + res.status + (res.status === 403 || res.status === 429 ? ' (the site may block automatic readers)' : ''));
   const text = await res.text();
@@ -273,6 +282,7 @@ const READERS = {
     const seen = new Map();
     let firstError = null;
     for (const q of src.queries || ['software engineer']) {
+      if (seen.size || firstError) await sleep(process.env.JOBS_RETRY_MS ? 0 : 1500); // be gentle, this site limits fast readers
       let data;
       try {
         data = await http(`${base('https://apply.careers.microsoft.com')}/api/pcsx/search?domain=microsoft.com&query=${encodeURIComponent(q)}&start=0&sort_by=timestamp`);
@@ -570,8 +580,15 @@ const READERS = {
   },
 
   async himalayas(src) {
-    const data = await http(`${base('https://himalayas.app')}/jobs/api?limit=100`);
-    return (data.jobs || []).map((j) => {
+    const rows = [];
+    for (let offset = 0; offset < 100; offset += 20) {
+      const data = await http(`${base('https://himalayas.app')}/jobs/api?limit=20&offset=${offset}`);
+      const page = data.jobs || [];
+      rows.push(...page);
+      if (page.length < 20) break;
+    }
+    const seenIds = new Set();
+    return rows.filter((j) => !seenIds.has(j.guid) && seenIds.add(j.guid)).map((j) => {
       const sen = (j.seniority || []).join(' ').toLowerCase();
       return {
         id: String(j.guid || j.applicationLink || j.title + j.companyName),
@@ -709,6 +726,7 @@ const IT_ROLES =
 const NOT_CS =
   /\b(sales|account (?:executive|manager)|marketing|recruit\w*|talent acquisition|people partner|human resources|hr|finance|financial|accountant|accounting|payroll|legal|counsel|attorney|paralegal|auditor|tax|procurement|supply chain|logistics|warehouse|fulfillment|driver|courier|nurse|clinical|pharma\w*|customer (?:service|care|success)|receptionist|executive assistant|facilities|retail|store|cashier|barista|chef|real estate|content (?:writer|creator|strategist)|copywriter|brand|public relations|communications|translator|teacher|tutor|banker|wealth|trader|underwriter|mechanical|civil|chemical|electrician|welder|technician(?! .*(?:it|network|support|software)))\b/i;
 const NON_SOFTWARE_ENG = /\b(mechanical|electrical|electronics?|hardware|manufacturing|propulsion|structures?|structural|thermal|avionics|rf|optical|optics|civil|chemical|process|facilities|industrial|aerospace|materials?|photonics?|asic|analog|rtl|silicon|pcb|fpga|vlsi|physical design|layout|packaging|test technician|field (?:engineer|service)|safety|welding|machinist|assembly|production|quality (?:control|technician))\b/i;
+const STRICT_CS = /\b(software|developers?|programmers?|swe|sde|sdet|firmware|embedded|machine learning|ml|ai|artificial intelligence|llm|data (?:engineers?|scientists?|analysts?|engineering|science)|devops|devsecops|sre|site reliability|security engineers?|cyber\w*|infosec|cloud|back[- ]?end|front[- ]?end|full[- ]?stack|web|mobile|android|ios|qa|quality assurance|test automation|automation engineers?|network engineers?|platform engineers?|infrastructure engineers?|systems? administrators?|it (?:support|analyst|engineer|specialist)|help ?desk|computer vision|compiler|gpu|cuda|graphics|simulation|autonomy|product designers?|ux|ui)\b/i;
 const PHYSICAL_SECURITY = /physical security|security (?:guard|officer)|loss prevention/i;
 const WEAK_TITLE = /\b(engineers?|scientists?|researchers?|analysts?|specialists?|interns?|internships?|graduates?|associates?|trainees?|apprentices?|programs?|fellows?|students?)\b/i;
 const CS_WORDS = /\b(software|programming|python|java|c\+\+|javascript|typescript|machine learning|algorithms?|data structures|computer science|cloud|aws|azure|sql|linux|devops|api|backend|frontend|cybersecurity|artificial intelligence|deep learning|data science)\b/gi;
@@ -758,6 +776,7 @@ function classify(job, src = {}) {
   const hardNo = NOT_CS.test(title) && !/\b(software|developers?|programmers?|data (?:engineers?|scientists?)|machine learning|ml|ai|sdet|devops|security engineers?|backend|frontend|full[- ]?stack|firmware|embedded|help ?desk|service desk|it (?:support|analyst|administrator|engineer|specialist|technician)|desktop support|technical support)\b/i.test(title);
   const recruiter = /recruit|talent acquisition|sales|account (?:executive|manager)/i.test(title);
   if (recruiter || hardNo || PHYSICAL_SECURITY.test(title)) return no('not a CS job');
+  if (src.strict && !STRICT_CS.test(title)) return no('not a software job');
   if (NON_SOFTWARE_ENG.test(title) && !/\b(software|firmware|embedded|data|machine learning|ml|ai|devops|cloud|security|qa|test|automation)\b/i.test(title)) return no('not a CS job');
   if (CORE_CS.test(title) || IT_ROLES.test(title)) cs = true;
   else if (src.allTech && TECH_TITLE.test(title)) cs = true;
