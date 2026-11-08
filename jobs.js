@@ -460,6 +460,89 @@ const READERS = {
     return [...out.values()];
   },
 
+  // easy.jobs career pages (used by BrainStation 23): <company>.easy.jobs/api/career/home
+  async easyjobs(src) {
+    const out = new Map();
+    for (let page = 1; page <= 3; page++) {
+      let data;
+      try {
+        data = await http(`${base('https://' + src.host)}/api/career/home` + (page > 1 ? `?page=${page}` : ''));
+      } catch (err) {
+        if (page === 1) throw err;
+        break;
+      }
+      const rows = (data && data.data && data.data.jobs) || [];
+      const before = out.size;
+      for (const j of rows) {
+        const a = j.address || {};
+        const loc = [a.city && a.city.name, a.state && a.state.name, a.country && a.country.name].filter(Boolean).join(', ');
+        const remote = (j.meta && j.meta.is_remote) || /remote/i.test(String(j.job_type || ''));
+        out.set(String(j.id), {
+          id: String(j.id),
+          title: j.title,
+          location: loc + (remote ? ' (remote)' : ''),
+          url: `https://${src.host}/${j.slug}`,
+          team: '',
+          posted: 0,
+          text: '',
+        });
+      }
+      if (out.size === before) break;
+    }
+    return [...out.values()];
+  },
+
+  // Feishu Hire career portals (used by Xiaomi): the page gives a csrf cookie, then the search is asked for
+  async feishu(src) {
+    const origin = base(`https://${src.host}`);
+    const portal = src.portal || '/';
+    let pageRes;
+    try {
+      pageRes = await fetch(origin + portal, { headers: { 'User-Agent': USER_AGENT, Accept: 'text/html', 'Accept-Language': 'en-US,en;q=0.9' }, redirect: 'follow', signal: AbortSignal.timeout(25000) });
+    } catch (err) {
+      const c = err.cause;
+      throw new Error('could not connect' + (c && (c.code || c.message) ? ' (' + (c.code || c.message) + ')' : ''));
+    }
+    if (!pageRes.ok) throw new Error('HTTP ' + pageRes.status);
+    const jar = {};
+    for (const c of pageRes.headers.getSetCookie ? pageRes.headers.getSetCookie() : []) {
+      const kv = c.split(';')[0];
+      const i = kv.indexOf('=');
+      if (i > 0) jar[kv.slice(0, i).trim()] = kv.slice(i + 1).trim();
+    }
+    const token = jar['atsx-csrf-token'];
+    if (!token) throw new Error('the portal gave no csrf cookie (it may need a real browser)');
+    const cookie = Object.entries(jar).map(([k, v]) => `${k}=${v}`).join('; ');
+    const portalType = src.portalType || 6;
+    const limit = src.limit || 50;
+    const out = new Map();
+    for (let offset = 0; offset < (src.max || 300); offset += limit) {
+      const qs = `keyword=&limit=${limit}&offset=${offset}&job_category_id_list=&tag_id_list=&location_code_list=&subject_id_list=&recruitment_id_list=&portal_type=${portalType}&job_function_id_list=&storefront_id_list=&portal_entrance=1`;
+      const data = await http(`${origin}/api/v1/search/job/posts?${qs}`, {
+        method: 'POST',
+        body: { keyword: '', limit, offset, job_category_id_list: [], tag_id_list: [], location_code_list: [], subject_id_list: [], recruitment_id_list: [], portal_type: portalType, job_function_id_list: [], storefront_id_list: [], portal_entrance: 1 },
+        headers: { 'x-csrf-token': decodeURIComponent(token), Cookie: cookie, Referer: origin + portal, Origin: origin },
+      });
+      if (data.code !== 0) throw new Error(`the portal answered code ${data.code}${data.message ? ' (' + data.message + ')' : ''}`);
+      const list = (data.data && data.data.job_post_list) || [];
+      for (const j of list) {
+        const city = j.city_info || (Array.isArray(j.city_list) && j.city_list[0]) || j.city || {};
+        out.set(String(j.id), {
+          id: String(j.id),
+          title: j.title,
+          location: city.en_name || city.i18n_name || city.name || '',
+          url: `https://${src.host}${portal.replace(/\/$/, '')}/position/${j.id}/detail`,
+          team: (j.job_category && (j.job_category.en_name || j.job_category.name)) || '',
+          posted: asTime(j.publish_time || j.published_at || j.update_time),
+          text: cut(htmlToText([j.description, j.requirement].filter(Boolean).join(' ')), 8000),
+        });
+      }
+      if (list.length < limit) break;
+    }
+    if (!out.size) throw new Error('the portal listed no jobs');
+    return [...out.values()];
+  },
+
   // Career pages without an API: read the job links on the page.
   // pages: [{ url, hint }], hrefPattern: text of a regular expression with ONE group (the job id)
   async links(src) {
@@ -737,7 +820,7 @@ const BEGINNER_TITLE =
 const BEGINNER_TEXT =
   /no (?:prior |previous |professional |work )?experience (?:is |was )?(?:required|needed|necessary)|(?:fresh|recent|new) graduates?\b|freshers?\b|0\s*(?:-|to)\s*[12]\s*years?|less than (?:1|2|one|two) years?|entry[- ]level|early[- ]career|final[- ]year students?|graduating in (?:20\d\d|spring|summer|winter|fall)/i;
 const SENIOR_TITLE =
-  /\b(senior|sr\.?|staff|principal|lead|leads|head|director|vp|svp|evp|vice president|distinguished|chief|president|fellow|iv|vi|vii|level [4-9]|l[6-9]|ic[5-9]|manager of|group manager|engineering manager|managing|(?<!solutions?\s)(?<!solution\s)architect)\b/i;
+  /\b(senior|sr\.?|staff|principal|lead|leads|head|director|vp|svp|evp|vice president|distinguished|technical leadership|chief|president|fellow|iv|vi|vii|level [4-9]|l[6-9]|ic[5-9]|manager of|group manager|engineering manager|managing|(?<!solutions?\s)(?<!solution\s)architect)\b/i;
 const MANAGER = /\bmanager\b/i;
 const OK_MANAGER = /\b(?:product|program|project|technical program|release|delivery|scrum|it|support|implementation)\s+manager\b/i;
 

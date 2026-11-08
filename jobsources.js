@@ -31,7 +31,7 @@ const COMPANY = [
   { name: 'Samsung Research America', channel: 'SAMSUNG', reader: 'greenhouse', board: 'samsungresearchamerica', allTech: true },
   { name: 'Samsung Semiconductor', channel: 'SAMSUNG', reader: 'greenhouse', board: 'samsungsemiconductor', strict: true },
   { name: 'Samsung', channel: 'SAMSUNG', reader: 'smartrecruiters', company: 'Samsung1' },
-  { name: 'Xiaomi', channel: 'XIAOMI', reader: 'none', disabled: 'no career page found that a program can read' },
+  { name: 'Xiaomi', channel: 'XIAOMI', reader: 'feishu', host: 'xiaomi.jobs.f.mioffice.cn', portal: '/global', portalType: 6, beta: true },
   { name: 'Agoda', channel: 'AGODA', reader: 'greenhouse', board: 'agoda', allTech: true },
   {
     name: 'Optimizely',
@@ -43,7 +43,7 @@ const COMPANY = [
     allTech: true,
     beta: true,
   },
-  { name: 'BrainStation 23', channel: 'BRAINSTATION23', reader: 'none', disabled: 'needs the address of the BrainStation 23 careers page', defaultLocation: 'Dhaka, Bangladesh' },
+  { name: 'BrainStation 23', channel: 'BRAINSTATION23', reader: 'easyjobs', host: 'brainstation-23.easy.jobs', defaultLocation: 'Dhaka, Bangladesh', allTech: true },
   {
     name: 'Riseup Labs',
     channel: 'RISEUP',
