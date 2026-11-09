@@ -107,7 +107,27 @@ async function http(url, { method = 'GET', body, headers = {}, json = true, time
   }
 }
 
+// Plain fetch with a time limit and a readable error, for sites that need cookies or form posts
+async function rawFetch(url, init = {}) {
+  try {
+    return await fetch(url, { redirect: 'follow', ...init, signal: AbortSignal.timeout(25000) });
+  } catch (err) {
+    if (err.name === 'TimeoutError') throw new Error('timed out after 25 seconds');
+    const c = err.cause;
+    throw new Error('could not connect' + (c && (c.code || c.message) ? ' (' + (c.code || c.message) + ')' : ''));
+  }
+}
+function keepCookies(res, jar) {
+  for (const c of res.headers.getSetCookie ? res.headers.getSetCookie() : []) {
+    const kv = c.split(';')[0];
+    const i = kv.indexOf('=');
+    if (i > 0) jar[kv.slice(0, i).trim()] = kv.slice(i + 1).trim();
+  }
+}
+const cookieLine = (jar) => Object.entries(jar).map(([k, v]) => `${k}=${v}`).join('; ');
+
 const cut = (s, n) => String(s || '').slice(0, n);
+const stamp = (j) => j.posted || j.order || 0; // for sorting: real post date, else the order the site gave
 const asTime = (v) => {
   if (!v) return 0;
   if (typeof v === 'number') return v > 1e12 ? v : v > 1e9 ? v * 1000 : 0;
@@ -492,36 +512,46 @@ const READERS = {
     return [...out.values()];
   },
 
-  // Feishu Hire career portals (used by Xiaomi): the page gives a csrf cookie, then the search is asked for
+  // Feishu Hire career portals (used by Xiaomi): ask the portal for a csrf token first, then ask for the jobs
   async feishu(src) {
     const origin = base(`https://${src.host}`);
     const portal = src.portal || '/';
-    let pageRes;
-    try {
-      pageRes = await fetch(origin + portal, { headers: { 'User-Agent': USER_AGENT, Accept: 'text/html', 'Accept-Language': 'en-US,en;q=0.9' }, redirect: 'follow', signal: AbortSignal.timeout(25000) });
-    } catch (err) {
-      const c = err.cause;
-      throw new Error('could not connect' + (c && (c.code || c.message) ? ' (' + (c.code || c.message) + ')' : ''));
-    }
-    if (!pageRes.ok) throw new Error('HTTP ' + pageRes.status);
     const jar = {};
-    for (const c of pageRes.headers.getSetCookie ? pageRes.headers.getSetCookie() : []) {
-      const kv = c.split(';')[0];
-      const i = kv.indexOf('=');
-      if (i > 0) jar[kv.slice(0, i).trim()] = kv.slice(i + 1).trim();
+    const common = { 'User-Agent': USER_AGENT, 'Accept-Language': 'en-US,en;q=0.9' };
+    // 1. the portal page (gives a few cookies; not needed if it refuses)
+    try {
+      const pageRes = await rawFetch(origin + portal, { headers: { ...common, Accept: 'text/html' } });
+      keepCookies(pageRes, jar);
+    } catch (_) {
+      /* the token request below says what is wrong */
     }
-    const token = jar['atsx-csrf-token'];
-    if (!token) throw new Error('the portal gave no csrf cookie (it may need a real browser)');
-    const cookie = Object.entries(jar).map(([k, v]) => `${k}=${v}`).join('; ');
+    // 2. the csrf token: the portal answers with it and also sets it as a cookie
+    const tokRes = await rawFetch(`${origin}/api/v1/csrf/token`, {
+      method: 'POST',
+      headers: { ...common, Accept: 'application/json, text/plain, */*', 'Content-Type': 'application/json', Origin: origin, Referer: origin + portal, ...(Object.keys(jar).length ? { Cookie: cookieLine(jar) } : {}) },
+      body: JSON.stringify({ portal_entrance: 1 }),
+    });
+    if (!tokRes.ok) throw new Error('the portal refused the token request (HTTP ' + tokRes.status + ')');
+    keepCookies(tokRes, jar);
+    let tokData = null;
+    try {
+      tokData = JSON.parse(await tokRes.text());
+    } catch (_) {
+      /* handled below */
+    }
+    const token = (tokData && tokData.data && tokData.data.token) || (jar['atsx-csrf-token'] ? decodeURIComponent(jar['atsx-csrf-token']) : '');
+    if (!token) throw new Error('the portal gave no csrf token (it may need a real browser)');
+    if (!jar['atsx-csrf-token']) jar['atsx-csrf-token'] = encodeURIComponent(token);
+
     const portalType = src.portalType || 6;
-    const limit = src.limit || 50;
+    const limit = src.limit || 10;
     const out = new Map();
-    for (let offset = 0; offset < (src.max || 300); offset += limit) {
+    for (let offset = 0; offset < (src.max || 400); ) {
       const qs = `keyword=&limit=${limit}&offset=${offset}&job_category_id_list=&tag_id_list=&location_code_list=&subject_id_list=&recruitment_id_list=&portal_type=${portalType}&job_function_id_list=&storefront_id_list=&portal_entrance=1`;
       const data = await http(`${origin}/api/v1/search/job/posts?${qs}`, {
         method: 'POST',
         body: { keyword: '', limit, offset, job_category_id_list: [], tag_id_list: [], location_code_list: [], subject_id_list: [], recruitment_id_list: [], portal_type: portalType, job_function_id_list: [], storefront_id_list: [], portal_entrance: 1 },
-        headers: { 'x-csrf-token': decodeURIComponent(token), Cookie: cookie, Referer: origin + portal, Origin: origin },
+        headers: { 'x-csrf-token': token, Cookie: cookieLine(jar), Referer: origin + portal, Origin: origin },
       });
       if (data.code !== 0) throw new Error(`the portal answered code ${data.code}${data.message ? ' (' + data.message + ')' : ''}`);
       const list = (data.data && data.data.job_post_list) || [];
@@ -537,10 +567,90 @@ const READERS = {
           text: cut(htmlToText([j.description, j.requirement].filter(Boolean).join(' ')), 8000),
         });
       }
-      if (list.length < limit) break;
+      const total = Number(data.data && data.data.count);
+      offset += list.length; // go on from what was really given, even if the portal gives fewer than asked
+      if (!list.length || (total && offset >= total) || (!total && list.length < limit)) break;
     }
     if (!out.size) throw new Error('the portal listed no jobs');
     return [...out.values()];
+  },
+
+  // Meta careers (metacareers.com): the page gives a small token (LSD), then one search request lists every open job
+  async meta(src) {
+    const origin = base('https://www.metacareers.com');
+    const jar = {};
+    const common = { 'User-Agent': USER_AGENT, 'Accept-Language': 'en-US,en;q=0.9' };
+    const pageRes = await rawFetch(origin + '/jobsearch/', { headers: { ...common, Accept: 'text/html,application/xhtml+xml' } });
+    if (!pageRes.ok) throw new Error('HTTP ' + pageRes.status + (pageRes.status === 403 || pageRes.status === 429 ? ' (the site may block automatic readers)' : ''));
+    keepCookies(pageRes, jar);
+    const html = await pageRes.text();
+    const m = html.match(/"LSD",\[\],\{"token":"([^"]+)"/) || html.match(/name="lsd"[^>]*value="([^"]+)"/) || html.match(/"lsd":"([^"]+)"/);
+    if (!m) throw new Error('the page gave no token (it may need a real browser)');
+    const lsd = m[1];
+    const jazoest = '2' + [...lsd].reduce((n, c) => n + c.charCodeAt(0), 0);
+    const name = 'CareersJobSearchResultsV2DataQuery';
+
+    const ask = async (newest) => {
+      const variables = { search_input: { q: null, divisions: [], offices: [], roles: [], leadership_levels: [], saved_jobs: [], saved_searches: [], sub_teams: [], teams: [], is_leadership: false, is_remote_only: false, sort_by_new: newest, results_per_page: null }, viewasUserID: null, isLoggedIn: false };
+      const form = new URLSearchParams({ av: '0', __user: '0', __a: '1', lsd, jazoest, __crn: 'comet.candidateportal.CPXCareerProfileJobSearchRootPageRoute', fb_api_caller_class: 'RelayModern', fb_api_req_friendly_name: name, server_timestamps: 'true', variables: JSON.stringify(variables), doc_id: String(src.docId || '27129360303422352') });
+      const res = await rawFetch(origin + '/graphql', {
+        method: 'POST',
+        headers: { ...common, Accept: '*/*', 'Content-Type': 'application/x-www-form-urlencoded', 'x-fb-lsd': lsd, 'x-fb-friendly-name': name, Origin: origin, Referer: origin + '/jobsearch/', ...(Object.keys(jar).length ? { Cookie: cookieLine(jar) } : {}) },
+        body: form.toString(),
+      });
+      if (!res.ok) throw new Error('HTTP ' + res.status + (res.status === 403 || res.status === 429 ? ' (the site may block automatic readers)' : ''));
+      let text = (await res.text()).replace(/^for \(;;\);/, '').trim();
+      let parts;
+      try {
+        parts = [JSON.parse(text)];
+      } catch (_) {
+        parts = [];
+        for (const line of text.split('\n')) {
+          try {
+            parts.push(JSON.parse(line));
+          } catch (__) {
+            /* skip */
+          }
+        }
+      }
+      for (const p of parts) {
+        const all = p && p.data && p.data.job_search_with_featured_jobs_v2 && p.data.job_search_with_featured_jobs_v2.all_jobs;
+        if (Array.isArray(all)) return all;
+      }
+      const bad = parts.find((p) => p && Array.isArray(p.errors) && p.errors.length);
+      if (bad) throw new Error('Meta answered with an error (' + String(bad.errors[0].message || bad.errors[0].summary || 'unknown').slice(0, 100) + ')');
+      throw new Error('the answer had no job list (the request format may need a small fix)');
+    };
+
+    let rows = [];
+    let newest = true;
+    try {
+      rows = await ask(true);
+    } catch (err) {
+      newest = false;
+      rows = await ask(false).catch(() => {
+        throw err;
+      });
+    }
+    if (!rows.length && newest) {
+      newest = false;
+      rows = await ask(false);
+    }
+    if (!rows.length) throw new Error('Meta listed no jobs');
+    const t0 = Date.now();
+    return rows.map((j, i) => {
+      const locs = (j.locations || []).filter(Boolean);
+      return {
+        id: String(j.id),
+        title: j.title,
+        location: locs.length > 3 ? `${locs.slice(0, 3).join(' / ')} (+${locs.length - 3} more)` : locs.join(' / '),
+        url: `https://www.metacareers.com/profile/job_details/${j.id}`,
+        team: (j.teams || []).slice(0, 3).join(', '),
+        // Meta gives no dates; the list is newest first, so give each job a sort number that keeps that order (not shown anywhere)
+        order: newest ? t0 - i * 1000 : 0,
+        text: '',
+      };
+    });
   },
 
   // Career pages without an API: read the job links on the page.
@@ -808,8 +918,10 @@ const IT_ROLES =
   /\b(it (?:support|helpdesk|help desk|analyst|administrator|engineer|specialist|technician|operations)|help ?desk|service desk|technical support|support engineers?|desktop support|solutions? (?:engineers?|architects?)|customer engineers?|forward deployed|implementation engineers?|integration engineers?|application support|technical consultant|product (?:managers?|designers?|analysts?)|interaction designers?|technical program\w*|program managers?|technical (?:writers?|product)|developer (?:advocate|relations|experience)|devrel|business intelligence|bi (?:developers?|analysts?)|information (?:technology|systems?|security)|network (?:operations|security)|data entry operator)\b/i;
 const NOT_CS =
   /\b(sales|account (?:executive|manager)|marketing|recruit\w*|talent acquisition|people partner|human resources|hr|finance|financial|accountant|accounting|payroll|legal|counsel|attorney|paralegal|auditor|tax|procurement|supply chain|logistics|warehouse|fulfillment|driver|courier|nurse|clinical|pharma\w*|customer (?:service|care|success)|receptionist|executive assistant|facilities|retail|store|cashier|barista|chef|real estate|content (?:writer|creator|strategist)|copywriter|brand|public relations|communications|translator|teacher|tutor|banker|wealth|trader|underwriter|mechanical|civil|chemical|electrician|welder|technician(?! .*(?:it|network|support|software)))\b/i;
-const NON_SOFTWARE_ENG = /\b(mechanical|electrical|electronics?|hardware|manufacturing|propulsion|structures?|structural|thermal|avionics|rf|optical|optics|civil|chemical|process|facilities|industrial|aerospace|materials?|photonics?|asic|analog|rtl|silicon|pcb|fpga|vlsi|physical design|layout|packaging|test technician|field (?:engineer|service)|safety|welding|machinist|assembly|production|quality (?:control|technician))\b/i;
+const NON_SOFTWARE_ENG = /\b(mechanical|electrical|electronics?|hardware|manufacturing|propulsion|structures?|structural|thermal|avionics|rf|optical|optics|civil|chemical|process|facilit(?:y|ies)|industrial|aerospace|materials?|photonics?|asic|analog|rtl|silicon|pcb|fpga|vlsi|physical design|layout|packaging|test technician|field (?:engineer|service)|safety|welding|machinist|assembly|production(?! engineers?)|quality (?:control|technician))\b/i;
 const STRICT_CS = /\b(software|developers?|programmers?|swe|sde|sdet|firmware|embedded|machine learning|ml|ai|artificial intelligence|llm|data (?:engineers?|scientists?|analysts?|engineering|science)|devops|devsecops|sre|site reliability|security engineers?|cyber\w*|infosec|cloud|back[- ]?end|front[- ]?end|full[- ]?stack|web|mobile|android|ios|qa|quality assurance|test automation|automation engineers?|network engineers?|platform engineers?|infrastructure engineers?|systems? administrators?|it (?:support|analyst|engineer|specialist)|help ?desk|computer vision|compiler|gpu|cuda|graphics|simulation|autonomy|product designers?|ux|ui)\b/i;
+// teams that are not about software (used only to doubt a plain "Engineer" or "Scientist" title on tech-only sources)
+const NON_CS_TEAM = /\b(data cent(?:er|re)s?|facilit(?:y|ies)|global operations|supply chain|legal|finance|people|recruiting|sales|marketing|real estate|construction|communications|public policy|business development|partnerships)\b/i;
 const PHYSICAL_SECURITY = /physical security|security (?:guard|officer)|loss prevention/i;
 const WEAK_TITLE = /\b(engineers?|scientists?|researchers?|analysts?|specialists?|interns?|internships?|graduates?|associates?|trainees?|apprentices?|programs?|fellows?|students?)\b/i;
 const CS_WORDS = /\b(software|programming|python|java|c\+\+|javascript|typescript|machine learning|algorithms?|data structures|computer science|cloud|aws|azure|sql|linux|devops|api|backend|frontend|cybersecurity|artificial intelligence|deep learning|data science)\b/gi;
@@ -862,7 +974,7 @@ function classify(job, src = {}) {
   if (src.strict && !STRICT_CS.test(title)) return no('not a software job');
   if (NON_SOFTWARE_ENG.test(title) && !/\b(software|firmware|embedded|data|machine learning|ml|ai|devops|cloud|security|qa|test|automation)\b/i.test(title)) return no('not a CS job');
   if (CORE_CS.test(title) || IT_ROLES.test(title)) cs = true;
-  else if (src.allTech && TECH_TITLE.test(title)) cs = true;
+  else if (src.allTech && TECH_TITLE.test(title) && !NON_CS_TEAM.test(dept)) cs = true;
   else if (WEAK_TITLE.test(title)) {
     // generic title (for example "Graduate Program" or "Research Engineer"): look at the team and the text
     const words = ((dept + ' ' + text).match(CS_WORDS) || []).length;
@@ -1052,10 +1164,10 @@ async function run({ state, only = '', save = () => {}, ctx }) {
         return seenOf.get(c.lk).has(shortId(c.job.id));
       };
       const fresh = cands.filter((c) => !isSeen(c));
-      const byNew = (a, b) => (b.job.posted || 0) - (a.job.posted || 0);
+      const byNew = (a, b) => stamp(b.job) - stamp(a.job);
       const gold = fresh.filter((c) => c.cls.beginner).sort(byNew).slice(0, first ? CAPS.firstGold : CAPS.runGold);
       const other = fresh.filter((c) => !c.cls.beginner).sort(byNew).slice(0, first ? CAPS.firstOther : CAPS.runOther);
-      const chosen = [...gold, ...other].sort((a, b) => (a.job.posted || 0) - (b.job.posted || 0));
+      const chosen = [...gold, ...other].sort((a, b) => stamp(a.job) - stamp(b.job));
       let posted = 0;
       let failed = false;
       for (const c of chosen) {
@@ -1180,7 +1292,7 @@ async function look(only) {
     console.log(`read ${jobs.length} jobs, ${good.length} fit, ${good.filter((g) => g.cls.beginner).length} beginner`);
     console.log('left out: ' + (Object.entries(tally).map(([k, v]) => `${v} ${k}`).join(', ') || 'nothing'));
     good
-      .sort((a, b) => Number(b.cls.beginner) - Number(a.cls.beginner) || (b.job.posted || 0) - (a.job.posted || 0))
+      .sort((a, b) => Number(b.cls.beginner) - Number(a.cls.beginner) || stamp(b.job) - stamp(a.job))
       .slice(0, 40)
       .forEach((g) => console.log(`  ${g.cls.beginner ? 'BEGINNER' : 'mid     '}  ${g.job.title}  [${cut(g.job.location, 40)}]  ${g.cls.level}`));
   });
