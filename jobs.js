@@ -68,8 +68,15 @@ function htmlToText(s) {
   return decode(t).replace(/\s+/g, ' ').trim();
 }
 
+// A connection that the site closed on us (it often works when asked again)
+const droppedConnection = (err) => {
+  const c = err && err.cause;
+  return /^(UND_ERR_SOCKET|UND_ERR_CLOSED|ECONNRESET|EPIPE|ECONNABORTED)$/.test((c && c.code) || '') || /terminated|other side closed/i.test(String(err && err.message) + ' ' + String(c && c.message));
+};
+
 async function http(url, { method = 'GET', body, headers = {}, json = true, timeout = 25000 } = {}) {
   let res;
+  let text = '';
   for (let attempt = 0; attempt < 3; attempt++) {
     try {
       res = await fetch(url, {
@@ -85,8 +92,13 @@ async function http(url, { method = 'GET', body, headers = {}, json = true, time
         redirect: 'follow',
         signal: AbortSignal.timeout(timeout),
       });
+      if (res.status !== 429) text = await res.text();
     } catch (err) {
       if (err.name === 'TimeoutError') throw new Error('timed out after ' + Math.round(timeout / 1000) + ' seconds');
+      if (attempt < 2 && droppedConnection(err)) {
+        await sleep(process.env.JOBS_RETRY_MS ? 5 : 800 * (attempt + 1));
+        continue;
+      }
       const c = err.cause;
       throw new Error('could not connect' + (c && (c.code || c.message) ? ' (' + (c.code || c.message) + ')' : ''));
     }
@@ -98,7 +110,6 @@ async function http(url, { method = 'GET', body, headers = {}, json = true, time
     break;
   }
   if (!res.ok) throw new Error('HTTP ' + res.status + (res.status === 403 || res.status === 429 ? ' (the site may block automatic readers)' : ''));
-  const text = await res.text();
   if (!json) return text;
   try {
     return JSON.parse(text);
@@ -109,12 +120,18 @@ async function http(url, { method = 'GET', body, headers = {}, json = true, time
 
 // Plain fetch with a time limit and a readable error, for sites that need cookies or form posts
 async function rawFetch(url, init = {}) {
-  try {
-    return await fetch(url, { redirect: 'follow', ...init, signal: AbortSignal.timeout(25000) });
-  } catch (err) {
-    if (err.name === 'TimeoutError') throw new Error('timed out after 25 seconds');
-    const c = err.cause;
-    throw new Error('could not connect' + (c && (c.code || c.message) ? ' (' + (c.code || c.message) + ')' : ''));
+  for (let attempt = 0; attempt < 3; attempt++) {
+    try {
+      return await fetch(url, { redirect: 'follow', ...init, signal: AbortSignal.timeout(25000) });
+    } catch (err) {
+      if (err.name === 'TimeoutError') throw new Error('timed out after 25 seconds');
+      if (attempt < 2 && droppedConnection(err)) {
+        await sleep(process.env.JOBS_RETRY_MS ? 5 : 800 * (attempt + 1));
+        continue;
+      }
+      const c = err.cause;
+      throw new Error('could not connect' + (c && (c.code || c.message) ? ' (' + (c.code || c.message) + ')' : ''));
+    }
   }
 }
 function keepCookies(res, jar) {
@@ -568,6 +585,7 @@ const READERS = {
         });
       }
       const total = Number(data.data && data.data.count);
+      await sleep(process.env.JOBS_RETRY_MS ? 0 : 250); // be gentle: this portal closes connections when asked too fast
       offset += list.length; // go on from what was really given, even if the portal gives fewer than asked
       if (!list.length || (total && offset >= total) || (!total && list.length < limit)) break;
     }
