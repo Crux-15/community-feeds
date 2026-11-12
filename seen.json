@@ -104,7 +104,8 @@
   "devpost-32024",
   "devpost-32026",
   "devpost-32098",
-  "devpost-32018"
+  "devpost-32018",
+  "devpost-32106"
  ],
  "News: funded hackathons": [
   "CBMibEFVX3lxTFBScU5SQVpFS3hFSFktSzdXNnFHZU9RQ3QtUTFzLUZYeXZTTWRuSkhyTGdpVnM2bkw3MlpFbWphRWNudm0wdk03dWxRaFc1OVRiS1F3MUd1Ymk4dGFheFJEbDVZYUZ4QVdCSFZaUQ",
@@ -165,7 +166,8 @@
   "CBMifEFVX3lxTE00bzFfTGNXZXVIbDdMVTMxdU9oU3RJZlU5LVdxMTNmZW41Y1J6RlNnaEE2aHRjSEhYMjFGX1MwSTRrQUl2Q19IdU93THcxQlpIS1JWRVlkNS1DV2p2eVpqUFVic2dIUnBkeEtkdHZZVEFRMUhJN005RVQ1Z20",
   "CBMipAJBVV95cUxOb0gzdjZ3a0E5YTJ2OEIxSHBrNWNRUzVwNWVCWkV1alBTTGo1RUs0cVpvWHRuTUsxeEZlTmViWWlEU2I0bDBGdHJGU0lVNlpqMDV2d2oyWWJLaDJfaXBUaFJHYnRadVhPME1PazdXenNLRWlMbF9RQllQMzdXckNMbVZ0RXk1YW9wak11N1FkdTc4amVZSG9oTE9KZnQzdTlWLWpfY1ZoZkJMdzl4dXNMM2c3YkNZamFjTVQzNXFsRXVWb283eU85SnNvNWNzWkhjUDR3YmFCNnRfaVNWZGM3ejRLZENiYnIwajhscWMzaTlvbDFBQktlSmhKaklicDFZYVhONHZRLVpkcVBnMVhvWVJFM2Q5LXV3OWE1RU5qd0xVWnc50gGqAkFVX3lxTE52NDhROUJodThwYVU3UkNyYmRmVk9BVGRzeUpGd2poM3cyR0UxTnU3eWF5LWtpRVN1SHVOVVliWEtXOHF4Wm1EMEd4SDZiWWRDWW16eTVKTGFzTjcwTmhSUE5DVk1QU1ZaUEZHdjd1bHhIRm1kT0R1QjRfeUtGNEdrSHJmWTVNdHlwZWtSQ0k2Mm9IWk9jTUFTTWhxa0lqREZhNlY2V1ZFMUloRDZwcEJmMHF5enRMbXVhdWoxV0U3NnU2RjFwTkpaM3R0aTVqTG4yWXRacWpMVmdSTHJyNUdJamRaT1phMXdTSXVTMnc4ZkNOU1E0SHNhdnNNZ0tQcm9Qal9HbHI4VnBKa3Bna0hlbm5razNQMjJBOEJfTkhXUkxPNzJxZUtCTlE",
   "CBMi5wFBVV95cUxPQlBHN01LeXJtZjBuZ2xaVXFWaGpISVBFMVBsMWw1eDd6U1Vicjd6LVdSTV91M2psVEZ1UERRQlItQkVFRFhhN0FuRktCMDc1eVA0cTZ3QVk0amU0OWt2RGhrTlNHUHN5SmZiN1hYV2VRb1ZhZjB1YXBlWWRUS3hWMHplbmtrYk5EeXhyalgyekIxVmJ6NW1oMlVDd1AxaG9hWFZHeG9iSkpCOWZwWU5qdlNmVzBUU1pwd1ozeHJKVnhTMUlVanlPN1VzOWluNUhaeF9yMXY2OW1naTYzN1dYaWYwS2FEWVE",
-  "CBMiqgFBVV95cUxNcVY2Zl8xMEVCWVMwTjk1QjZBbnFWT3pNV0NpTlpqYkxPTG5EaHFtMXFhc0tGVGszdW5wbGRvZUQ5UWZPd0FVbVRJRkpscVFLVkNoTnNQdFFMLTVJQWVyeEFhdHlTbjRVSzI2N1I1SVZwcXVHT0lwY0haa3c2TEs3bjd3cFRJWUd1Q0R0Y2w3YXJsNVFRYzd2RTdXTW9Yek04RGpacWJGT1FXUQ"
+  "CBMiqgFBVV95cUxNcVY2Zl8xMEVCWVMwTjk1QjZBbnFWT3pNV0NpTlpqYkxPTG5EaHFtMXFhc0tGVGszdW5wbGRvZUQ5UWZPd0FVbVRJRkpscVFLVkNoTnNQdFFMLTVJQWVyeEFhdHlTbjRVSzI2N1I1SVZwcXVHT0lwY0haa3c2TEs3bjd3cFRJWUd1Q0R0Y2w3YXJsNVFRYzd2RTdXTW9Yek04RGpacWJGT1FXUQ",
+  "CBMi5wFBVV95cUxOSk93VklxYjkxU0k4WWZHYXdfbnJ5Q1duOTNMYWIzcTllVTNrdlBKOThOTG1ROUt5UkJXWllQZXVTSlAxQWxJMjRGRFRfRVIxLWZiQ2xQM0gxbHJLNzcxSzFGa1lrZE9yemlXLUhsQlB3MkZpbjZ5dmFXUzZSanRkZG85a3RpOXlKZllZTGJhRmxjQXpqMzJPcU1GWC14NzNzQ2M1V3NWOWg2MjFKMVFGMUhETWI4YWZBdWhOMVZmQkZiR29zSVJRNFVoNkJXQnN6d2pHWUFvVkh2T2tMWjRmR1F1WXQwUlE"
  ],
  "News: Imagine Cup": [
   "CBMiwwFBVV95cUxQalctVmVzTHJ5LUF1VWxjaUJla0E4TkFQdXRXaC0ydVAyRzMzaXoxeEM5N2kyckZ3blZQLWV0V21GemtuUU9NTVg4TVl4a2s0UzVOYUdIRGh5M3huNzR0WVE5ekN3SHNodl9Ra1JIY3M0RDJhQUJJT1dHSEZZa0EyMktLUDVvLTVvMG82RV9yRk4wcVdCUUh0M3pKV2JmbjJHUHVvcUh6QmliUWhiTHRnVHRpQWN2aFBOU2s2S1cyQjlCN3M",
@@ -283,7 +285,10 @@
   "https://opportunitydesk.org/?p=180112",
   "https://opportunitydesk.org/?p=180120",
   "https://opportunitydesk.org/?p=180118",
-  "https://opportunitydesk.org/?p=180119"
+  "https://opportunitydesk.org/?p=180119",
+  "https://opportunitydesk.org/?p=179954",
+  "https://opportunitydesk.org/?p=179955",
+  "https://opportunitydesk.org/?p=180121"
  ],
  "News: funded MS and PhD": [
   "CBMicEFVX3lxTE9vSzl6Qm1BOTFsRzFoZTU0S2l3cF9la05SZzE5UnhaWDNmUjlfbWtHU2RXMGQzVExuRE5HWkZ3bHI1Qkxfb2J0VTdUNkVwNzJHSTRCOFhjQjVLODVUeC05R1NNbllrb2ZpUWxjQTdZVno",
@@ -392,7 +397,12 @@
   "CBMidEFVX3lxTE1YLXZxcWd4dmh6RG5wLVJELWVrU2M1a1VMZ3Jrc1BsLXg5TFp0SHJncXFHWnZVZDlpTWY2d3BzUjNESkkxdnMwNWFHUFBIdEtlUjJsQ04wVnNxS2hPTkVFU2V2WTdFWjFpdlY4V2pJenc1VzA3",
   "CBMicEFVX3lxTE0wTC0zbk83Z191MWJwUXlaSVpfOGYybUVHUXFGVXBTWjEwcDRjRU4wQm9FTFlZdGpCV1ZxLUNwblVIQXJXXzR0RENmR05xbDI3YUE2eHVyUXNzOFJnLWpRT3ZhZGZ2cWpLdHF1RmtGd3A",
   "CBMipgFBVV95cUxOQkMwbDZXc0thSUhWSFNtUkV6OGxUVU1vRWRza1ZHdDgyWDQ4WUdjcWNIanhuVGZWYkRiV1dCWENVS1g0R2owZ3ctZWFGWXNpUFRNbU5FZnZMSHQ4cHJYa3g5MjBpdlVDX3ZBbUlEaG5MLW9BV3JMdDdLOEtuVUROQWhDU3pXaHc5MFZobHktdFVMb0h5UjVFb1RsYWNWQzZSYjB3YTN3",
-  "CBMi6wFBVV95cUxOTXZwSHlDZlFta1h4YXJyNFhUS0ZUaUVoUjR5Z3VqN204ajI0Y21NN3JST05rRzRjVVBqUVVrZUt3YkF0bnJyN3d4MUMwV1F4ZDY5SEkzZ29PdUh4QXN0QnpzWlFyV3Z5cUg5S2cwZ2I1Sk1IaXhaSEVMQkE2LUpXZFdsb0dIeGtyU1ZIVEpxaUtCTzJyQURlTlhwVWk5SmFUUm9oRU0wcmdCU0FnSFVfdlJLeElJcHpVcTE1ZnZLeUZnbHd5SEpwU2dWRVlFMUJBRzNIMWtHazJQQUZZTi1TTEYyX1RXSFRoWmJB0gHzAUFVX3lxTFBEai1QNDhpUW1Va0psa1VIQjF0R1RtN1puc2YwcFhCNjlaY2hFRXlqQ3VMWFBqMG9Xa1Z2LWRGT29yYnpUT3dMZFE4Wi1IN1pDYmFhVXMxWGhoeHZsLTdyYkNwd3psYWc0SUZnOUtUaWZTLWg4alZfMXd4MlFJQWQ0MUlVSVpKSFFsM0pXNDNSOVdvaHZHOUFjWWwwZjlZcjZQSnBDZVJ2OGNROGxiRUFIR25BV1V6RnJmb28wajRSNjMwQ3hwQ0stbHV1dWQ5aE1yS0pSWmJReVVQWTdyOFFQaHJITmlwaXBpUEhfWE4xZ1RqRQ"
+  "CBMi6wFBVV95cUxOTXZwSHlDZlFta1h4YXJyNFhUS0ZUaUVoUjR5Z3VqN204ajI0Y21NN3JST05rRzRjVVBqUVVrZUt3YkF0bnJyN3d4MUMwV1F4ZDY5SEkzZ29PdUh4QXN0QnpzWlFyV3Z5cUg5S2cwZ2I1Sk1IaXhaSEVMQkE2LUpXZFdsb0dIeGtyU1ZIVEpxaUtCTzJyQURlTlhwVWk5SmFUUm9oRU0wcmdCU0FnSFVfdlJLeElJcHpVcTE1ZnZLeUZnbHd5SEpwU2dWRVlFMUJBRzNIMWtHazJQQUZZTi1TTEYyX1RXSFRoWmJB0gHzAUFVX3lxTFBEai1QNDhpUW1Va0psa1VIQjF0R1RtN1puc2YwcFhCNjlaY2hFRXlqQ3VMWFBqMG9Xa1Z2LWRGT29yYnpUT3dMZFE4Wi1IN1pDYmFhVXMxWGhoeHZsLTdyYkNwd3psYWc0SUZnOUtUaWZTLWg4alZfMXd4MlFJQWQ0MUlVSVpKSFFsM0pXNDNSOVdvaHZHOUFjWWwwZjlZcjZQSnBDZVJ2OGNROGxiRUFIR25BV1V6RnJmb28wajRSNjMwQ3hwQ0stbHV1dWQ5aE1yS0pSWmJReVVQWTdyOFFQaHJITmlwaXBpUEhfWE4xZ1RqRQ",
+  "CBMirwFBVV95cUxPVWZ4VTNNT1RmZjNiRE9OQ05iamY0TE1rZVZ3REJyMFI3MjliTDkwM293elZ2YWxZeXhrcnh1OVNNOXZfaFF4VC1RV0g1OTFzUkJQYnQ4T1FCeWpVRlBITlhoeXlrdTRqX3hKN1BtSXFOWmhaVWhDTkp4UEt6bnVZemJvLUhLVWRacXZCT253dEVrSk9qcV9KdWtScFI5ZUVJc2VUWm1WaDVxbTQ5ZUlV",
+  "CBMi3AFBVV95cUxOQk4zWVozSFNRbFliekVZeUg4RE8wNFF6Nk1haWk1M0V1TGQ1LWRNcW03RVpDN1ItMnhGVzJwQ3dWSGlrZDNUOFpvVW9ISk16WjVhV1BreVhodzJCV3dFM1Babmtuc3NaR0xsWjRyYmNrR211elhKNURobVVSS0R3cmpaSVBSQXJubC02S2ZLWGJObDBsak1zU1FNWWRCSmdUbkZsMTdTMVVzSnNMa1ZPUWl4QjRsWUwtUHF0RlVvaEpVRU5LSHh2Mm5pUzR0Y2JSeU05MEwtZ1p0Z2Ff",
+  "CBMi3gFBVV95cUxQV1QwRGh4SmlIekx3Q0F3dFlaVFAtX0V2OXptOFhwbEM5UnFCUE5PazVHd3NpRFRpZmQtYUJHUGlXN3otcVVTV01JU2V1OWR0RDZDZEUweHhRZF9MWVdKOGNWY0QwaGxzY2hzWGJnTWw4Q3MwWGZXZTlVcUJiMzNRTW9sLUdwb2JFQjEtLVNDelAzeXZsR3pKRzZ2Nk9JUTBpV0lOZVllSnhBS2R1aHZIY0UyalBjTEFFbUJvZkJpWDg4VktqU0d1U2p1dWNXQlJ6ZkZnWUNCM2g4SWlJNWc",
+  "CBMiO0FVX3lxTFA0XzZCR3NkVHoxdGxWTFJMeUhra29HUE1PQ2xtTE93ZGpZUzdhclY0UERCb1lla2Y2SU5n",
+  "CBMipgFBVV95cUxQaXV6QkxXY0RsbkU4VEhhMk43UVQzeTFycU5aZGRLUGNFSEg2Z2NzX081QlQ1R19sa2cyajRmYXduTDVockJnbTAzdWVCV2ZpNTJhWHA5dlVWdnlWdU5JcjBsSTdxc0FZQ3RFMzNSZTltQnQ4TkpxcjZKNEJMSFNXelk3b1UzcVFsd1ZfQ09QVXM2TEYxd0lsa0Zoa2tTQzl4ZmNjYzdn"
  ],
  "IELTS news": [
   "https://ielts.org/news-and-insights/maintaining-trust-in-english-test-scores-for-high-stakes-decisions",
@@ -554,7 +564,15 @@
   "https://www.scholars4dev.com/?p=25834",
   "http://www.scholars4dev.com/?p=18811",
   "https://www.scholars4dev.com/?p=29123",
-  "http://www.scholars4dev.com/?p=20918"
+  "http://www.scholars4dev.com/?p=20918",
+  "http://www.scholars4dev.com/?p=11693",
+  "http://www.scholars4dev.com/?p=4950",
+  "http://www.scholars4dev.com/?p=9479",
+  "http://www.scholars4dev.com/?p=9467",
+  "https://www.scholars4dev.com/?p=26849",
+  "http://www.scholars4dev.com/?p=13615",
+  "http://www.scholars4dev.com/?p=8647",
+  "http://www.scholars4dev.com/?p=11086"
  ],
  "News: Germany": [
   "CBMia0FVX3lxTFAtVHhXaGVsb2JlazdxclJvbjVrQ2wzWUpXUmhkU2RwRzYyTHM0eEpGSlV6NVVTM3U1b1NvVlJ5OUtQbHd5ZDAta1pzOHdpMkVaR0tkXzZkOUM4c0k1ZElIdzVHVUdmZnZNMlI4",
@@ -595,7 +613,8 @@
   "CBMiqgFBVV95cUxPenBqOEFsdjhQdDNuZlhxMDRxVnc3VVpxRXdjX0t1cGhQU0xrdGR3ZHpFM04wamN3aVA1SXMxc3R5YWY2WXVWdnFQZ1R4b25MdDlWejlLdmRUZW1uRHFQemQ3YXRlUDU0TUhOQkpMNkk1aUFtcDBjUUwzVU9sMU9JTW1PSmZDa2VjVEVqR2Z1b1I1eEFUc2FKLWRsZjViM3UtSF91dE5GbWVsZw",
   "CBMib0FVX3lxTE5SWVdoam1sdG5mZ1d5bmdieGpUS3NpQTVHSWpjOFd6ZFY5TUJPUURWVEVTOUtseEZOdzAxRjc2Y1N6clM2OTc3M0kyTTV3SVpnak10M0pGbFFBQXJlMjVDWFJLYUo1MXNVUFVpMURzQQ",
   "CBMi8gFBVV95cUxQZXRvSDVhVS1qMTc4UEJRbnplaWtySUNBMm5kZlFCbXNCNEZKQlVBSS1uTGluczM0azBPd2ZVRDg2aTV4RlVTODVha0lPcmRMbWtfal84YjZfZ2FsTFRDRWpKRjRXekVDVmRNaGdVTVZiWGhwekxvNWNaQU5lb2M4VWhmQlRZU2FPNURkUUxOajNUaFdiNDE1dnBEZGdoUXc2LWJmd2VkaDdWNGVOcEhxSnpfQ3pkQUQtV0hscFZ3RGNleXRqWmp4bTU4VWJ2MlRZa29UeWtPYXdfR1hDWmthbnNLbEtCcklQY3dyWGRQczdHZw",
-  "CBMigAFBVV95cUxOOFRwWS1udUJsQzVkVVd6RzdKUkhxMVRxUngyckZIbE1vbUlEMGx4VloxcFVWMDJRNkRYUFpYUlh5RmlBdE43VU5vWFBQMC1iOHpzQkYzV3hsWmpJXzhBQncxNmtIbFdpc2loUW1UR2tYRktRWFdSaW9EUUlLRV9HTw"
+  "CBMigAFBVV95cUxOOFRwWS1udUJsQzVkVVd6RzdKUkhxMVRxUngyckZIbE1vbUlEMGx4VloxcFVWMDJRNkRYUFpYUlh5RmlBdE43VU5vWFBQMC1iOHpzQkYzV3hsWmpJXzhBQncxNmtIbFdpc2loUW1UR2tYRktRWFdSaW9EUUlLRV9HTw",
+  "CBMicEFVX3lxTFBTeXFGWUlEdTFRbWJ2QVF0dGhtc2Mzd2NqZVplMHo0NXlYYnh1ZVZ1Sk1OYUVwMElFbGZyS2FCX1R3NmIzRFJuQ3ljdW0yelZVSDN3SVhsbHVTN1ZENGl1MEt3cnFtTE9ldUoyaW1YWGs"
  ],
  "News: Netherlands": [
   "CBMiiwFBVV95cUxQX19SdUQ2WXFFNDhhNUFrN0xiX0k1ZkJiS1ppb25ndno2N3FMZGhDaHZMNVdLeUdSdW03cVh3RG40Qk4wUGlYdHM4ZFJKcFFGb2x6czVzTl9WNXJ0ejA0Q09aaU9tZV9vZWZDV3FYYmZzSHRqNmREQWtTSnVrMXJRRHltY3c4SWFqVTJJ",
@@ -927,7 +946,8 @@
   "CBMirwFBVV95cUxOM1ZlUmZCR3lmckNHT1Jwei02RS1KY3NvS213WTFvNmszNXMxbFRIRlJTcTNiN0dGNEp1cnBobjc5QmFOOGdZNUJ0cWhlaVE3bGR4c2RlQnlnWUFad2lwTjVBcnFkcmJVcVJhTmpWRjRJdE5JRjl1aDUzTkxkV0RBSE1RZVNpTVdaaEFDVzRXR29Gb19tMk0wVEV6bkU1eVBiaXZ5NG1kWFN0RDZjU2dz",
   "CBMi2gFBVV95cUxOZEFxUGNLV29YZWFXUkpkVXdOVGcxSGpIemk2amRtWlZWcTRQUU13Qk8yOWJlM0JjYkNhbDVsVHhndHFtcHJQUHFQY09La1lGbXNJaDhHMmdVZ0Y4MG9oQUhPSEs4ZzVOY2hJVkNVNGZJbnlFNGhFMnYwajNVYXUzYUdEYkcyTk90cXRicFp1UmdxRDZBcjZTN1BzREtjTEhzSnhfcHgzRUF5eG00bzN1RGFKQjdqR3JmNEZlblNNdVRjbWE0MHh1VzN5SkUtelJmNmRjSE1YT0ZQdw",
   "CBMic0FVX3lxTE5lNmZZUVRSX1VUQ21HSm1rMmUxUlNfdzlEeHpDOTc0Y1Foc1pGRmZQQ05mcW5ic3drY0xLOGdnVzYzQVM5emdpZ1hiSnlZUkk3RFdsWEpCOXdxZWU0T2FsM2MxUEVjVEQxRWdtSFczLWhfUEE",
-  "CBMiqgFBVV95cUxQYXo3Tmt2ZjhHblE5cUdma0tZemtrbVd3QXcwNmw1cDJCQ0p5S05RNE9kZFg3R2oyQ2NWRS0tQ09BdEdXUmpXYTYyS3VqTUVyUGlXQWZLZXlhRThJRjFoamVwdS1kZkFUUDJCbUs2SzhCYWQ2RU51cDZSRllPdlpJbHczdEwyZWZVTHNNMHAzRVlvVFBuUGZIX2pjdFl0X2dGdzJhNHpCQzc5dw"
+  "CBMiqgFBVV95cUxQYXo3Tmt2ZjhHblE5cUdma0tZemtrbVd3QXcwNmw1cDJCQ0p5S05RNE9kZFg3R2oyQ2NWRS0tQ09BdEdXUmpXYTYyS3VqTUVyUGlXQWZLZXlhRThJRjFoamVwdS1kZkFUUDJCbUs2SzhCYWQ2RU51cDZSRllPdlpJbHczdEwyZWZVTHNNMHAzRVlvVFBuUGZIX2pjdFl0X2dGdzJhNHpCQzc5dw",
+  "CBMixAFBVV95cUxNOXNLWEczWDFESUlIbGVTR0NlT24tc0NKQzUxeUFjMWlPVUExWG1jRm5oMUxhSmhGSFdjd0xhdjJvSGpzVkRrb0xqWWp2ZmxoNXZmbVhHWDZqZ0t1WUVocWV5dk5DaE96NDh2SUU3SngwNDdULS1WVnlHSHdrYk5rQnVGVWdVR1l3OFRjT2MtdUhGc3dHSWtTUi1WSFZrUHRQcFJGa1A1WktmSEpEMGtMODVGZU1kLU5ibkJPYWFFRGNmVEF4"
  ],
  "News: UK": [
   "CBMibEFVX3lxTE5NWG1Vems5djBxSW5nY3ZvUnhhN2RqbnloUy00dV9EajBqdmdNSzRjNFZmbDdIOEhuQnB4Y24zcjF3d25QOWJPQlNvcUZBSUFMYUc4Q3l2Q08ySU9sX0VfNnBPS2t6Zks4Z3kycQ",
@@ -1517,7 +1537,10 @@
   "CBMiywFBVV95cUxNdmVoS0h5OFdBNy01RHdXSVF5X28xaktuSjgzeXZ0S3d5Q1FDSnJoNjlQMGxfNEFnclF0MHpmeVE2SUlLMW4yakE0cVplT1VocnhuQ0N0MldPaWRKR2NhRkZ3NGhJa2Y5NkxldVhxaWoxX1UyaDc4Z203UUMwTGNZMlpXbGppWnlSc3BPREdFZ3lZc25kTEh5ODZwRTRFVFp2T2lCcm14UDhwZzdMX3Y5clU1aUw0VFRSb0Q3WnREYWZuX01SZkkxNnRFZw",
   "CBMisgFBVV95cUxOajZxOE1jb0czdm9xNXdfQ3U0Qi1TTlZvc01ZS3VHem9vZmdlemFXYWpCSFd5dmh3NDJFVFh1QjFFenJTSzZ4UHgxMGtsM2tja19qSGI3SGxPMDhMeW1rRW4zV1FOVTM3YlkySTBMTVk3R0NXMUxOZ1Z1ZjljYWYxanFXOE1IbHNBWTlyaGRhMjd1aDhuSHdCcnZpVDZHWXRUanRJeXFrbk1OaHR2d0swaHdB",
   "CBMihgFBVV95cUxQVDlkaDJVaHRDbFhjVlZQRTVDbVkyUjJTTHdvQ2JSN2ZpLWlpaVBoUGpGWVVtOF96ejBPWnRSRkxzU3N0andTaW0zREVNZElaU2YycW9Ba01oTnVUS1k2eWN6M2pfN1NYOEozU0I5cUxjZmljVVNvRzkxR0x5ODhmOUY5YTY2dw",
-  "CBMiwgFBVV95cUxPRVQtYkdUNm1tZ3FpdVNHUUF6MDdLLXZXLU5KeXh4UjRYa3U4alFlWHlYRGhJcWJDNGNobkZoTWZJd1FCNklNYzFUWWVaRWRBb2VmbzNDZllYUHgyaFN6bmhkQUg0empKR0tJSGV6S3NCUFAwLXdadjN0d05LRGFBaGV4VDdrc0ZPNk9heXFUekJlT0Y2QmNqS3E2RDRSQ04tMTh6RlljNk9hTjFGUExTaDdCZVFpWDM3VnMwZ3VlSnoyUQ"
+  "CBMiwgFBVV95cUxPRVQtYkdUNm1tZ3FpdVNHUUF6MDdLLXZXLU5KeXh4UjRYa3U4alFlWHlYRGhJcWJDNGNobkZoTWZJd1FCNklNYzFUWWVaRWRBb2VmbzNDZllYUHgyaFN6bmhkQUg0empKR0tJSGV6S3NCUFAwLXdadjN0d05LRGFBaGV4VDdrc0ZPNk9heXFUekJlT0Y2QmNqS3E2RDRSQ04tMTh6RlljNk9hTjFGUExTaDdCZVFpWDM3VnMwZ3VlSnoyUQ",
+  "CBMingFBVV95cUxOLVM5NjB1T0cyQTZkeWZQWW8tMTVjdzFTVFVnRDFMWEVjX2lEV0dqXzNmcHJPR3N1UzlKQ3hHdFFFRGhWdXl3aWhfRUwxMzZodS1uVk1YNVVudWhoT1hUbkVSRUJCZnFEcmZLanFtb3MzZlRXbVBXTXVvVDJ2N1lTbE9zM09obXFHazI2VXFNcllkR0hLOF9MbVVzZTNsUQ",
+  "CBMiuAFBVV95cUxNT0VSZTlxYllwQThIc2lHbmdKcU9tNUlsaXotN0dBSm13eEl2R0hXeC1GaDVneXlRbWtaR3FIc1F5SENOWDRLTlFpVGxfT3dUTDIxbW5SVElnWjAzSmc3MkVid1IxbUR4MDNuNG9EWnJ6dy1RMGJZSWc2MHZSQ2pOSjUxLTVwX0tFbEdpalRIZDNGNExCeTVVdmRCd0JuNlJKZkZNZXJZaC1FOHJMSkU3SWZYVHVHem5O",
+  "CBMikwFBVV95cUxQemozWEhMZ3EwXzZxWUdMazlwS3FMeXVCZ29HR3VBTFhXdHNMXzBzY0lNTEJEdVdsZHpiSmlxejd5MFRmdzBGZFlMenpPNHJVRkt0bFFOQkRuY25TTzlSQXBQX1kzU1RSTF8xdlliNmQ0Q3ZkSXZUYmNxbkFwaWZiZWpfckxYd1d3M3IxOUEycGVvaGM"
  ],
  "News: other Europe": [
   "CBMiQ0FVX3lxTFBsRzEyS3BxRFIyQlV4elhDYTI4bTBTczNtTzJPU2d5ZTBzNnJYLWNxRTdnUlNMdW03TWdMcExmZ1hQZGM",
@@ -1620,7 +1643,8 @@
   "CBMiS0FVX3lxTFBQamJna0dFRDdtZ2lCN1dJeS1iOUhzOUJONmxLeTVaTm9ncmlWQXZ3RE9HNHFSZnBWY0I3aGlpcmxFcVJublNSS3JxZw",
   "CBMigwFBVV95cUxOdjd6d1pQeENScjdHNlNwb0c4WHh2VGo0SWdiMGF1NnYtRFV4aFZyLUZaRTlWVGJWQ3VxSzRldGxUb19FWW5mV2UzQUhFOVkybEgwS3NYNHhlQWJMQTEzVXNvMjRabTRicUFjSnVwVklzQVNiRkhmcVpxYkk2YlRFVkxGdw",
   "CBMijwFBVV95cUxPa1dIM0pQQUpxbHlMczBXMHA3NURGUF94S1ppMFZYQ3RmMG82cGRrSTRhYm1SN1A5UkpwM0NyRW1hVkpzSWxlVFdhM1hPS3V4aks3ZjlIX18xeUZYSVJKam1jU0ZYT25FVFRxc2xmTE9CN2c3NFFQOTI3aW5lemt2N1FoYmJpbkwteHg5RU5xaw",
-  "CBMiYEFVX3lxTE1leU43NWJ4OURpb1VneHFBQnlYN2hSVUZ3WjlDbG5Na1M2V0N3ZjVLWkNJVEJlRmNSMy0zQzhZUnhmd2R0UTZWbDFTRVFGZ2hPUVpUeUZQVHBBd1J3elJxZA"
+  "CBMiYEFVX3lxTE1leU43NWJ4OURpb1VneHFBQnlYN2hSVUZ3WjlDbG5Na1M2V0N3ZjVLWkNJVEJlRmNSMy0zQzhZUnhmd2R0UTZWbDFTRVFGZ2hPUVpUeUZQVHBBd1J3elJxZA",
+  "CBMiZkFVX3lxTE9CWGJSVldzSVZXSzhwWlh5QkliU21HbnNObi0tcUNnV1NuTGdjMUQ2VlVzSm03Y1dqM0dTN2poamFGMVpBNG9VcDJXNHJKdzQ2WUNGTE44YVRGYUM3SFF3d1c5cGM5UQ"
  ],
  "News: funded CS and AI PhD or MS": [
   "CBMia0FVX3lxTE14WmR1NVpyNUdpTWNGeTc5dHNxcnl4NlpDTFhtQVd1U3ZQbWZ4NVFTaUNkTnlCUFNsbWZObjJST0lJTkFVQV9VUWFlMjl3T1lBMm5nRXByWEJoWmxra1BDOEREOHFNSm5PbF9r",
@@ -2577,6 +2601,52 @@
    "u": "www.scholars4dev.com/the-canadian-international-development-scholarships-2030",
    "title": "The Canadian International Development Scholarships 2030",
    "t": 1794483562765
+  },
+  {
+   "k": [
+    "allpeoplebehappy",
+    "volunteer",
+    "service",
+    "award"
+   ],
+   "u": "opportunitydesk.org/2026/11/12/allpeoplebehappy-volunteer-service-award-program-2027",
+   "title": "AllPeopleBeHappy Volunteer Service Award Program 2027 (Funded)",
+   "t": 1794510608317
+  },
+  {
+   "k": [
+    "cuhk",
+    "issues",
+    "final",
+    "ahead",
+    "december",
+    "deadline"
+   ],
+   "u": "news.google.com/rss/articles/cbmi3afbvv95cuxoqk4zwvozsfnrbfliekvzeug4re8wnff6nk1hawk1m0v1tgq1lwrncw03rvpdn1itmnhgvzjwq3dwsglrzdnuofpvvw9isk16wjvhv1brevhodzjcv3dfm1babmtuc3nar0xswjryymnrr211elhknurobvvss0r3cmpasvbsqxjubc02s2zlwgjobdbsak1zu1fnwwrcsmdubkzsmtdtmvvzsnnma1zpuwl4qjrswuwtuhf0rlvvaepvru5lshh2mm5puzr0y2jseu05mewtz1p0z2ff",
+   "title": "CUHK issues final call for fully funded PhD fellowship applications ahead of 1 December deadline",
+   "t": 1794510610794
+  },
+  {
+   "k": [
+    "full",
+    "list",
+    "nigerians",
+    "before",
+    "december"
+   ],
+   "u": "news.google.com/rss/articles/cbmipgfbvv95cuxqaxv6qkxxy0rsbku4vehhmk43uvqzetfycu5azgrlugnfseg2z2nzx081qlq1r19sa2cyajrmyxdutdvockjnbtazdwvcv2zpntjhwha5dlvwdnlwdu5jcjbsstdxc0fzq3rfmznsztltqnq4tkpxcjzknejmsfnxelk3b1uzcvfsd1zfq09qvxm2teyxd0lsa0zoa2ttqzl4zmnjyzdn",
+   "title": "Full List: 5 Fully Funded Scholarships Nigerians Can Apply for Before December 5",
+   "t": 1794510612489
+  },
+  {
+   "k": [
+    "tuition",
+    "fees",
+    "norway"
+   ],
+   "u": "www.scholars4dev.com/norway-scholarships-for-international-students",
+   "title": "Tuition Fees and Scholarships in Norway for International Students",
+   "t": 1794510618822
   }
  ],
  "News: GRE updates": [
@@ -2598,13 +2668,13 @@
  "__jobs": {
   "openai>OPENAI": "0pfySIiE jGocDZEW SqbsSGvk Mb0jCfHK 9wMkFJk8 crLYEKI6 8OLH0WgI Fz6nrxSu 3TH5vAPW JsvnlfSM M6zgSTRg dHgabULr XDdAg2oN eUCe7X_c BVnF1V63 9y5SnnML vnpZTAaZ k_neiZ2a -2ppCL1_ jtlyF-wc 9n4GIJQQ PnqWNS9Q kBaCY_rP 4nZpjNKs g1tSai2B 3Yty3juS GTOMUYVZ YN7r8UKv Fc8HyYZN DGjKz1JN UCW-GkVo lLeMon4D yZklzkqd a5-UL7nG PZqygiCP ZoS-RuPK -poFQW0i JfpJ4f7N 1_wZ0dLL O4h5IVS_ IZbbEtov w3IPZ-7j wFR5dNDf Egm-grLo 7IZcLtYK q9dR0-Bv SgUPNiFi NIjOwHxZ 8OoTW368 eucXyG-E y6a5Y9IT KUT5ZTUC DdjhzXDG EuxLgEW4 UxdQllxb Z-ZgnV2y gamUMXLf 5jjx1eru wWtmjG7G YqsPlLWC peG-vGUX kb2rl-PI VW9IvN5k egzB1KrK I9S6gjk1 xLnFjV4B fDG7nvTG bGbvKked loaH10ed EBgJSksM mGU1J24O iRUU1AUu INBZ4T3d jXeoLW1X mPszrg6P sGtaEit2 KqkdEPY- CpNdpKt9 evzjEDAS EYbXnyUn V4GtzSJg VxZwqbge IInlXV6x Q7WTTPhG lwdc_0ni qR_7DxBQ P8ABTKAY Z7pnViLz Kpj99T6A ozFyrHIf JDql1V-d 7kp6TBAQ nTSXjn_g b-1BWkfm 8xdV34zE 9RRZlBPr thIUlo25 5RG2oai6 zfG3UlDk 2p9_mnC8 zUDTtY5Z H-ZSJ8E3 ldhdTCOs SRJMp5yd 76Ce4ikT oSkalXhZ 95tMi7yt NU98A_eL _eLWJrGO NpOsDmpN eqLhLHeS UR8qvVvb -O_jKNwR vkXJZ7ml V4IRypE9 VdZydpXl 7lfRY2uV Xyf03rp_ IqWfZQ8T _xtQ95er uIUq_7he zgaOcZFt nCYKLC2p 4zYwZCcV gkRydZsE j4YqIPyf plQsZKjn 8FEtkN-C MSBXYc8D _IDwPqsc ZA_L3x5a AlZTXiLZ ZVneqsKe RosBoDUA LWgrP8cT -yM6MSBQ 4fN_gdWe McmNUJ52 BO57rwbe aIJGEpP9 lVQq9i85 WyhRkNkl VnBuRX5V mSNxfgHO 0tvPUhEo Leihz8UL ebYQAsmH ukzTLexe 9XDXNOKa vEsiYc5h 9RHFTor8 9pchppXC evubBVuU clt2EHA6 wNwDI1FE ChYTVwKo PhO5A0ZK 9o6lODUs unQpCVfc opwnTwMK pXoZhFRU HJGxLcgt EH4tCKfu QfzacJyY _sFy6hrM jkVmrJaV RXgUmSfa rROdq1iK -q1vLQkJ ZN9kceaA IXDm1MiE AZ2IimcT -xogWFI_ ILUHx3PO iUJIAASe zb4xu_W1 wVlIETx1 yxrIi_bZ wDtCHBCQ UK7CFFGF 3aUK_FWp hIkatso1 2d6GQG08 SkGgamOU 7RorsjaG hr2RyjGB zNNwYbC- FG2DeyCz gXqe5wHJ 4_WMy9_y ESz6WMoi lj6E0-_M DKbI3Wf- pf4Psz5c 2LLFLSMY M2rOj3o6 fm4sOLSS r3Cc5PgY tNQjXkoN unoKuc8J IZBCz_4C s9azHXC- 685lsumy p_ATZIDB zr3CL4kn 0mCLYvdy 3G8e82hK 4zmBkh7w pyQzY2wG 1jiS238H N3N7JBfv kl6pbgDZ u4SyB1vA z0iHfgAZ Lq69Fzvb Cpz5M6iZ WhbjRP_e 5n-YGGIh umnuiFgU RRqYuAES 6n3W5MGH UT0f--ez DQq1AWWo SzoqJL3O 1XcieQPH U_S0s8Dj ZoLHoMem 3pFnQrTq OBMHODIJ F3wQ4K5h vDeKl_FB f098xcnq Oe7RtIGv JzZFSaR9 7rCkgeAz OftPEwWU hCVTX3dL WpJw4Uug KheuMEa3 vn2pcn1w LzQZcvD- qHnXFN5V XCRNwoRM zbqL2qeq 44qdxfFB",
   "openai>BD": "",
-  "anthropic>ANTHROPIC": "Jp3ZOEPF Hz6fol2J AD5_wEud IFcgBGHZ bICmLLNY yr58y0Y4 bWqhTBNP obTVma8U wr8Fgp8i H2HDsqCQ nqFgfqQy eeAOpZ1i Coi7nsEM GAtje0wO V1sQUTi- 1yEsWGuh HueNTZ4n zMf4Sv-D y4pR7i9d YSepo-61 4WfFTvUW i50hvwqu xz2TQMkb mRjTtEEU nFSYeg5o 8e4x4qiK WZ9Z5EYE c1gWfaKO YXaJlL-G lsw8Eg78 EPIN2a0R KzUzBYAf f8B9lNhL zdo8g9Ym 8-YvtT5C AtCmseZ4 YkCutnBK QgDnlkV7 bSCkOPey LrnaqLtD p5M-CZEI Va3BU5oM wviDl53A iCUkqbXA m2Enqd7g tsOMN6bF aK8WWaJ_ mMe9BAz7 4r6--qBR sHuv-Hrl 6DlRcfEb yuq6-4LT DCqAwTtD BHNszUJe plh6jdk3 u6k16FSU ioZQwujh --3OG9jU hSmvmsc8 qUDi5S-z chiz7UQA rPbj-mU4 W2sxd3t_ KjrtvSwX lUYVJNay 05XEC16l YL2PTK8k ViIcZXqY wxxpncRs vpi_eLhX LLSuz3Ww D00Es8tD C2NvOv6U Ofkz1fzZ Plj-y6a5 O7DLaSm3 GbVaZzzL 2OxT3hqW m8XGu6yi 4cLizZxD D0oH6Nhs Ncs6226Y kZk_8hxz 6fAaRyGq RiqOZ15n OkOR-m_P p5ysOG5a XmfRJcIP lrkgyZPE ul1_rYVU t8EQJ7mT SO8VZw9P jMHQMGjY ex-GT2Ex nFBTgSNg B-1N1I-W",
+  "anthropic>ANTHROPIC": "Jp3ZOEPF Hz6fol2J AD5_wEud IFcgBGHZ bICmLLNY yr58y0Y4 bWqhTBNP obTVma8U wr8Fgp8i H2HDsqCQ nqFgfqQy eeAOpZ1i Coi7nsEM GAtje0wO V1sQUTi- 1yEsWGuh HueNTZ4n zMf4Sv-D y4pR7i9d YSepo-61 4WfFTvUW i50hvwqu xz2TQMkb mRjTtEEU nFSYeg5o 8e4x4qiK WZ9Z5EYE c1gWfaKO YXaJlL-G lsw8Eg78 EPIN2a0R KzUzBYAf f8B9lNhL zdo8g9Ym 8-YvtT5C AtCmseZ4 YkCutnBK QgDnlkV7 bSCkOPey LrnaqLtD p5M-CZEI Va3BU5oM wviDl53A iCUkqbXA m2Enqd7g tsOMN6bF aK8WWaJ_ mMe9BAz7 4r6--qBR sHuv-Hrl 6DlRcfEb yuq6-4LT DCqAwTtD BHNszUJe plh6jdk3 u6k16FSU ioZQwujh --3OG9jU hSmvmsc8 qUDi5S-z chiz7UQA rPbj-mU4 W2sxd3t_ KjrtvSwX lUYVJNay 05XEC16l YL2PTK8k ViIcZXqY wxxpncRs vpi_eLhX LLSuz3Ww D00Es8tD C2NvOv6U Ofkz1fzZ Plj-y6a5 O7DLaSm3 GbVaZzzL 2OxT3hqW m8XGu6yi 4cLizZxD D0oH6Nhs Ncs6226Y kZk_8hxz 6fAaRyGq RiqOZ15n OkOR-m_P p5ysOG5a XmfRJcIP lrkgyZPE ul1_rYVU t8EQJ7mT SO8VZw9P jMHQMGjY ex-GT2Ex nFBTgSNg B-1N1I-W tcO7QyfG NWU1IEVh 5-eEvdcb QIeVEtuQ",
   "anthropic>BD": "",
   "samsung-research-america>SAMSUNG": "m1lm0pLK wpxF8RwQ W4Ov4V_W",
   "samsung-research-america>BD": "",
   "samsung-semiconductor>SAMSUNG": "D06fpFrn lrxUApaf Tt4I5OTs bOzs65bb eRtpN2HW ltJkBiy9",
   "samsung-semiconductor>BD": "",
-  "goldman-sachs>GOLDMAN": "dft3CCuq 2V1EkKwN ITPYf36x csUXggzf XMJ7e3qS ayNW7tFl Yj5he24K ldYpmu8H CgkdypHZ",
+  "goldman-sachs>GOLDMAN": "dft3CCuq 2V1EkKwN ITPYf36x csUXggzf XMJ7e3qS ayNW7tFl Yj5he24K ldYpmu8H CgkdypHZ QgKST7gu I9fYgf_6 CpUe0cgj W5nAdWD3",
   "goldman-sachs>BD": "",
   "agoda>AGODA": "7BnM1GYe 6cZShul8 W6f9RLpM _e0Eir_a TpWs5BlZ xHkFhSwN uAZgIMp0 xcBA7jWv D_r2-MQw VYzbV2L8 Sgq3_HE3 uw3gkn7D tyh0jwRN O8525Etl iCkhbnqK ioiQ4bm8 pS7wsH7n 76e90Bew krsAOHK0 NGe2n19N d5s-PazI 39uScPSa ZsYBwhbx e8KmK952 QSchcxU0 hGi-YmAN RLaV3TmM RolwBoDG a-c1FX77 QzgU89_- s6ZCVLFQ",
   "agoda>BD": "",
@@ -2617,14 +2687,14 @@
   "we-work-remotely>REMOTE": "EMIWlUTn t6QTwzPF YSUzjJvp b5jc4x23 lirg2taT RTr-1gDu jrFTBj5z aJ0wegLT A6poZBOd ET0Ewz-3 21VYE6Hy jGoWWtd5 LEdCzyvI 00TdgVxm F5zhzuSA VPJLfr3y",
   "himalayas>REMOTE": "kIX08-z0 4ts_CfLz y8xKPNmc qlVbN9vy 1PRFoPrw hhBJ1UXX ddRbY1Ky UVbRzVrs K1bSWGZ5 klpMLZmK KXGP6Ht9 BsYFTpDw Ujg9Sc68 dD27AwY5 8xvvG1lJ",
   "jobicy>REMOTE": "KnoFJRLg QNml1x-2 5nA3VPcN 8mjxiMdx wrqhECC5",
-  "arbeitnow>REMOTE": "bVl1pqsk dIJ_Yg-d 1fkFbeu1 ZsADklb- 7H02_rVt 2zWcWSs9 jOGDYGck NKIl7AVC kx5GDbx4 ZzEhpv0X vn-C1giQ jKuzZKN_ ToPr-T-u bglpR179 7Yu4-32i E6I_d05U HaDfKFc- esg4cq3d gjVdmrio yQqzRORT tDY4M-01 YbWikazg BbjUtF6G 4kv6ZvQz bNFX8l1X FrnNY4md k-2VeB7v RZKsI-CS SWHKiCw8 4tMh8U8R m5esoyDN _HOsJrZm Pf3PEPI0 mtAJLqx1 6Zu2ICVS 9Nqi7yra uB-HZTcG rHuSOOSS XKhK5-X7 91UThkbT zExAz2YO 8CV2wLMR tE1YXAwF phKgEgBc 09wNTjmD NQMHZer5 wbEs3HV- Vv8dh6z6 k8RByJN2 NIbENbU2 P_gjnOZk KtqmQ3hN _dcKzNih Pk0kme3X 8Le2uvuC XrWPbJcg 9wwZfgqj upS-fjl1 rnuOoFB- 3gVSfcHv g6aJKHmw W0IanDO8 bb6rOhnE -bsF-Vxt kAeBLdAr NWx2K8d7 q59Y8UfM Q3QqzaW0 qkjEEE7d Q0XFMylw hj0TQMpy NT3UCbCu ANzmerCh 0FjQ2Z-C 7dfQntwy",
+  "arbeitnow>REMOTE": "bVl1pqsk dIJ_Yg-d 1fkFbeu1 ZsADklb- 7H02_rVt 2zWcWSs9 jOGDYGck NKIl7AVC kx5GDbx4 ZzEhpv0X vn-C1giQ jKuzZKN_ ToPr-T-u bglpR179 7Yu4-32i E6I_d05U HaDfKFc- esg4cq3d gjVdmrio yQqzRORT tDY4M-01 YbWikazg BbjUtF6G 4kv6ZvQz bNFX8l1X FrnNY4md k-2VeB7v RZKsI-CS SWHKiCw8 4tMh8U8R m5esoyDN _HOsJrZm Pf3PEPI0 mtAJLqx1 6Zu2ICVS 9Nqi7yra uB-HZTcG rHuSOOSS XKhK5-X7 91UThkbT zExAz2YO 8CV2wLMR tE1YXAwF phKgEgBc 09wNTjmD NQMHZer5 wbEs3HV- Vv8dh6z6 k8RByJN2 NIbENbU2 P_gjnOZk KtqmQ3hN _dcKzNih Pk0kme3X 8Le2uvuC XrWPbJcg 9wwZfgqj upS-fjl1 rnuOoFB- 3gVSfcHv g6aJKHmw W0IanDO8 bb6rOhnE -bsF-Vxt kAeBLdAr NWx2K8d7 q59Y8UfM Q3QqzaW0 qkjEEE7d Q0XFMylw hj0TQMpy NT3UCbCu ANzmerCh 0FjQ2Z-C 7dfQntwy LZvP0i_A 5ast_527 JqTgH2sm S4rskZAQ G8ullNb6 zbm8cBn4 _xaxlA5u RMw-L8ao wV0jt1Q0 sZV4txrE _Jxmfgvg",
   "stripe>INTL": "IGGV94mE T2mtm645 wu2jRAhv Q2w-oTGt 54CqQ79g ku1DL-4o S22ptgPe QP1Aj1Xo 8G4izP2C CZYu46Ti C5KAI0wo 1V_r27RD 2w-Sye3v JlZfElKg Utxm2tOC 9ZMBnqmE bRZVQM7S ROfmNCsz fWhqBWx5 HfB7Th3y 5fgFdVrm 9knadVtc a_CM8gVB Q0jwNQs9 DQZaQyqN hqrWaEe7 2c6ub7Hh lXFVCKWs zHIDtNUi aIfbiSk9 lGYzNj3L S3x3hEI7 uKfndOPx GukwAhRs 3embNKR- nt_0cifL jFV2KdMj rUu6v8lB NyFY7giE TQGFHwmV 5bJPhOoV 3838fWZz 81sbDWWw RpfW222k l1obRLTY 8AcQT9ak VCdUbfle SQ9IjHnD c1Sv8WFq 6VemJLn9 Nss3nMaF zvWJsy15 UHMtWskT gxMO1cVz VgtifFGK ZHS-_QlX xT9WSRVn ILjvb4e1 lfiNPwvo lntmdpo2 Gzdl1201 eP3O1ytn K91pfW-5 uRamOGda uzMl8qs1 TkazNZ6s Ih3f-545 HidoFop9 sKN_26jj 7BipmETu LzA2vNGg Y63fzmQb RWAuZWOn jb_XiSLp PJ_s922R 54nYir-w AMuR4oL6 8YrV5id6 0jhNekdU tO29HScr AFvs-6gX GwWUK3_3 wRRzPFfo Y4zYs2LE 0WSjaXwu KKMuCi2X 1cnbdLeL nchc9Cr5 PYTAEFwr n5nk-lsO yssP3x1E HZQeYfje dlHdtz-i OEpJ2yiB 26_ZTzTn PeXqsrIM HjICH3zO jNOGexGo 09T4TwLI Q2xKU5vM wR4RQb3U 6lyEl024 Z27jeqNk EWjoo_DX WC1SFdv0 AznWyqJn s9ickyHx C_8qXRfZ 9hLvquU9 HVRuNTor hMq_nhBd 6dc7d774 D1U9Hhl6 yl_xMdOL VrORiEc8 FH_GvKhI gRuSNEar dhh-lt_9 SDu5m_R- k7axbBmT -Y3hwbdX 25kB70tm S6qWlk_a S-oMxXwa GCBxVQ9j wH3Bgim4 vsGNbjyq",
   "stripe>BD": "",
   "apple>APPLE": "5mSfy3mU iSptP-7F -eFtvxbI CvmhHAUQ rkqYR5N1 Rt92Yy5r VQGby6ug sQtuK-Es 1RSYME-S AvNlw-BS JSsVtODG WSEuV5ea dn_0qMVn 8ZygRAmn Dead7mAT 6ZiH3O30 8mwqqCrC f40oTame c5IlJdat Fog0cL2j 296moqFm 8rJMR087 dWf5eVOY 2aSYqKPY X6JQd2xz UJN9qK_U yoClpePV QAjqNG-1 fnnZkfLb Y8Fka81y 3OiFg7he qxtwrq8K x8oH55Cb gavBMGPM jurMqgJC",
   "apple>BD": "",
   "cloudflare>INTL": "QJgKOOD8 IuHgMDcv p8i5Am3B bZIxaZfA Z0yRa7L1 iuX9nbeG CqADwHbn shh5SXbP 274QysjE wNqGaD-P OiuTO_wL kC8Xuo7o N5_i0owj kZX26d5X FBwhdTp3 s8yZXTOu UoPzWQya nei8K_md R2MqVC1n gX0Ys_9F yN5sDsy7 fW_umvYc ZqpaovIK QikPTV7E OLvRs79m faDIJB9x ySmlyKkb 6QC5MKTA pLAQlLTD eQrtuu-B fZKXDI1l nBtHIgiq ZsCpx3yh AnAdr6U4 8uBr2aMD JX6VSb3O YtvLjnem 1RCzMkIO WK0uajoh gPzqVGTG yqvXcz84 LuHsFO2S WnJAMnaj jutEvNkq -fFynGgp Z7NntlQd 0dSZ1Ifu UQfRUGlQ ACaMa6ik OH7fV7oc BC9_9g39 nIQMm0lR niDbqHQx f72QYcWo p2ej68Mk bd8FrlOS tnf2UKiM XRTp5nwi 9OwgfEYU ql3foVnA qVkr-Ra0 HXFrkYKx FLVmCOSM b1m6IcgQ",
   "cloudflare>BD": "",
-  "airbnb>INTL": "EGqzbW4o 3gEIIpiN 3R4e_Jy6 Dk0qS74f 1ksfWhvM RcZPk0Wo bdWBHDVx HQDGDtu3",
+  "airbnb>INTL": "EGqzbW4o 3gEIIpiN 3R4e_Jy6 Dk0qS74f 1ksfWhvM RcZPk0Wo bdWBHDVx HQDGDtu3 HRnm85zX",
   "airbnb>BD": "",
   "optimizely>OPTIMIZELY": "kSnzvG8G G6XUbaKu YOLMmmPv EctXNWNw 2yloc0xx UgAMChI- ej4TGsKm JQ2KWGj5 T1mtSV6s auJE5Erl j5zbNAYt",
   "optimizely>BD": "kSnzvG8G G6XUbaKu YOLMmmPv ej4TGsKm auJE5Erl",
@@ -2636,7 +2706,7 @@
   "dropbox>BD": "",
   "databricks>INTL": "DRvf5GyE Wg21WGUt PgaMVbVn 4uzeEwaZ 3U10k4Ix uzJcCVFi QwwajMon L7CdUmGW J-37vykn qNiBuzf0 hK8pZQbu 7wB3ZLHS ZHzXMVdz oWSid-p6 tR-yWU-0 y41GqsV0 thOLnAf3 wxyQrlQo AUSgCA29 xpvNO0NZ 2-DAEGTm XaYSQJWB jlUC1-UA 181itJYF YgiwRft3 C2aT38X7 rbMMmNup EwhtWAuv zC0SL8Fb gQuhtHgZ 9Oqg9A3d gxrrbpTw Xd4vKLZG B0PWwfEF 1oOlPOJt C1mfICFI 2LM8eInb s-CisArU U9eB6SRg fcl5AaMY i54ReKWl -vcttJct k0_wWnNn -2yocW9i QSWxHw02 9lkeMiCo Bdf6zmG2 -ep4z0Nk LkILt6aE sYFmzKdP V8KNMAw3 4zsPPPTT YIaN1OXV R3DLW3KY aJ0QJZ5C -0glcfYG 92fsKG4V uriaXVPW HflyR0bZ wcRy87VJ 7IEPWfGA dsrYVXf7 sS0-5-z6 OOoJwPPb SC3s4HNG 3VZLS4pY _-NRIGaN J1UyosWr Enf9yLAF HCoNgtES vNpazHvs 7EnDTnqf eyjfy6Bc EuSoogY_ lYLayHjJ Ev-zsTYO KX8jFyxR sThaQoKp yyOnYoyd efyTfW7X eSyGwW_Z 0t-9PGrW wBh3qW3m LK7Nc5F- jLGtEpC9 RRjRdGAW NbCstQ2g 5Le6eagV 6IaRy_gy 2qp2vIWn 21uJlM8g 7yOjmgo3 Ei7CRGAU pnvCd16J il_-6Yyj 5yo_4Qs0 FfDYk7sS TFceU7N_ Dp9OUr9a fkPYw5wr XB-CLH2u",
   "databricks>BD": "",
-  "google>GOOGLE": "ndT9hGV- BZl1IaAw 75_nzbd3 X5iVbssz dD3Yw5fr l43tGvbt KDgocT3d F3ub472a _8l1AgIJ a8eDwSv_ EhkXcGmo nAqxKfz3 dwKkW40C qlHrWjxL 8H0MBvcJ WvWyVCqz q1IjXhWd AWEGiByJ gvJYB4IR 8bDyPZBO uTQS_3vi RNbmktdH XReN1rtA lmyTIZ0h k6RMOssY dUMSdgqU deyIXt5E QIGb6eMP oFPYag_C 9Sr7bm2x 61n-rucL pAMMz2Ui wqnmc8v1 2C3UazdY xmCywp6I IJ0nBR_w prYFLGH5 w2rVpOFj 2pxrYPyV 65axt1kK jf6Lpmhb ISx6tsta MahBsbEz 5HUgGCmb u1iZ77SG QYaZrI2i SGuvUTiU 4-l3LsA- 8G4Z5IUQ QxeKy0m9 lHEZ-tkU tU1uR49I tucWbbVm dcQuSi_K eem5PBXZ U6K_69Qa y0a3yu9D KeSu6OE4 _4-xwXnV 2h7vujU0 emjfA9Ez 1kkTBYyA qGNqP2by p5SNd6me lsrbxhdP BxAkFPo- zn-q1pjM JH1C8oaj 2sQzOZMs x-A0FGr7 D-M1XG0- lazPTaxK WQ3s-Qfj zWKxy3ST 8likWW-A 0uvhw6G7 geeQDbPq 7vCxv6sd 2fQkSOut krYLCE9h a3MP-FOL 5vYO1yUe 4mE0Fi3x bvp16nwP LAckoL10 pHiOIQdV 8xDPapno Ft1F5Do_ NsdxDssW YFg8SjbD TNqkfOuN CaPhcr0Q xaYDVNR- 5hwq3lgV d9NtSILN zBSRzB90",
+  "google>GOOGLE": "ndT9hGV- BZl1IaAw 75_nzbd3 X5iVbssz dD3Yw5fr l43tGvbt KDgocT3d F3ub472a _8l1AgIJ a8eDwSv_ EhkXcGmo nAqxKfz3 dwKkW40C qlHrWjxL 8H0MBvcJ WvWyVCqz q1IjXhWd AWEGiByJ gvJYB4IR 8bDyPZBO uTQS_3vi RNbmktdH XReN1rtA lmyTIZ0h k6RMOssY dUMSdgqU deyIXt5E QIGb6eMP oFPYag_C 9Sr7bm2x 61n-rucL pAMMz2Ui wqnmc8v1 2C3UazdY xmCywp6I IJ0nBR_w prYFLGH5 w2rVpOFj 2pxrYPyV 65axt1kK jf6Lpmhb ISx6tsta MahBsbEz 5HUgGCmb u1iZ77SG QYaZrI2i SGuvUTiU 4-l3LsA- 8G4Z5IUQ QxeKy0m9 lHEZ-tkU tU1uR49I tucWbbVm dcQuSi_K eem5PBXZ U6K_69Qa y0a3yu9D KeSu6OE4 _4-xwXnV 2h7vujU0 emjfA9Ez 1kkTBYyA qGNqP2by p5SNd6me lsrbxhdP BxAkFPo- zn-q1pjM JH1C8oaj 2sQzOZMs x-A0FGr7 D-M1XG0- lazPTaxK WQ3s-Qfj zWKxy3ST 8likWW-A 0uvhw6G7 geeQDbPq 7vCxv6sd 2fQkSOut krYLCE9h a3MP-FOL 5vYO1yUe 4mE0Fi3x bvp16nwP LAckoL10 pHiOIQdV 8xDPapno Ft1F5Do_ NsdxDssW YFg8SjbD TNqkfOuN CaPhcr0Q xaYDVNR- 5hwq3lgV d9NtSILN zBSRzB90 c0K3lE4w La0ZvkBU 5X2A-ee2 iXZwYXSy 9kHNcX09 1xZvRxof cKPeFnDh kQuwMr0V",
   "google>BD": "",
   "coinbase>INTL": "fNTjz5nn yNGr1Uan Ubg8PMMl RpdyOnrV _beSpXHY r-4paT-F F1qtVwHf JQqrSvhd CcWo1be6 Xv7qD0g3 6oY-txXC yMtXTowz yjDoTaBO tiWPVqNf BJqZ5olY OxAe1Yix Ts9V___p Yfb6G_sx nvVr-o0P cUJIYMkT z4p5Xx0_ dZ0A5xUZ 1oDpm4k- 4kdpe4R2 88msjRH2 usZa0T9v 6DNNpnbi 4yiztfTo 0gDn63TE -raHsru4 2-tgvCgn",
   "coinbase>BD": "",
@@ -2712,17 +2782,17 @@
   "salesforce>BD": "",
   "adobe>INTL": "L14qsYHe VTdoHU2E mPRv2VdE rzqf01qO uYjmK3zv Z3nDn3iO Zow2sR59 iopabYd_ J243UOa7 rvcwyppO rMS5_PsU SrT0w4GV Wa_B4Y17 7xxuPbPw gyuCMfiq uKXl4WUh _XxOlL8d ZJ9ySFeT 0nI6LEQP ka1gGIeL jD29--2h tTSbGGH9 hjP1S4fM tKEakXoe t7o88VNz ty1-V_Ps d8XU9LhU 7HnvwSGj 67vm9O57 XD6GbuqT -O0MUjDY LRC_7NVb z9QMBr8_",
   "adobe>BD": "",
-  "intel>INTL": "DXh1jGCx guvxMPyg o5RATXar 3dszI5EU 1QJ-l_u3 _h4ZIImJ 23SRGbeU 4tGh1EvQ wN7rRnVY qCaHAxje l_ZrahcW nGMidt8A eKIO4BD8 GENt4ZVP KZ2bCbrE RShK6EOF S-0YKLsT _QMpLBYU r2adUZYH BnSxB65D aHfrzwe1 kEofXc77 WNX6OI1Q U-kIPh1L pyEim-rr O7amkxIW XrAusOYL 7xrKNHaX r_a4umry QtoYOvIq 5S4TB1sp _f7d7_Pe KF2wXHCp uxyGVQP7 IzwcgoT8 HiZBTEUF uPaeB5KZ bYkIJL2L 6F3fTbcE -JcLW5Zd HnQWPY7G LoJp3Vk_ jHwkN9vs kccO2Hry J4GXTaLk spNyU0gE yGsIsmK9 BBPsY8Y2 46bggS1j ltJjSr3b Z8mpxoTJ HBUkz81B BdNF6GfG 5uUYHc6o f_Nm-sgb wzHDa3Kg ggfcgheK hwqcZ8Fv zLxN6zDe xbxl1RoX sVvLZUs0 905aKY7e VfB40JVP Sv3u84X0 Jb8g8MuV YPACiGF- 70jEu-Fc iogePbbC tKmvaGgF FdOt6pub i6PsmLsZ ob6GcvoA lU9FnImT 0quJMln9 qO3jiqHd Z0rRV1FP jxYYXV-Y EBmv59bG xePdZdQa TkuCvckH ktiBLP5u gFOAEBpC bghh6yqh XL0UXOK6",
+  "intel>INTL": "DXh1jGCx guvxMPyg o5RATXar 3dszI5EU 1QJ-l_u3 _h4ZIImJ 23SRGbeU 4tGh1EvQ wN7rRnVY qCaHAxje l_ZrahcW nGMidt8A eKIO4BD8 GENt4ZVP KZ2bCbrE RShK6EOF S-0YKLsT _QMpLBYU r2adUZYH BnSxB65D aHfrzwe1 kEofXc77 WNX6OI1Q U-kIPh1L pyEim-rr O7amkxIW XrAusOYL 7xrKNHaX r_a4umry QtoYOvIq 5S4TB1sp _f7d7_Pe KF2wXHCp uxyGVQP7 IzwcgoT8 HiZBTEUF uPaeB5KZ bYkIJL2L 6F3fTbcE -JcLW5Zd HnQWPY7G LoJp3Vk_ jHwkN9vs kccO2Hry J4GXTaLk spNyU0gE yGsIsmK9 BBPsY8Y2 46bggS1j ltJjSr3b Z8mpxoTJ HBUkz81B BdNF6GfG 5uUYHc6o f_Nm-sgb wzHDa3Kg ggfcgheK hwqcZ8Fv zLxN6zDe xbxl1RoX sVvLZUs0 905aKY7e VfB40JVP Sv3u84X0 Jb8g8MuV YPACiGF- 70jEu-Fc iogePbbC tKmvaGgF FdOt6pub i6PsmLsZ ob6GcvoA lU9FnImT 0quJMln9 qO3jiqHd Z0rRV1FP jxYYXV-Y EBmv59bG xePdZdQa TkuCvckH ktiBLP5u gFOAEBpC bghh6yqh XL0UXOK6 rBB2MYde N_LmDav_ L4E7ZH7G Vn7oSufc",
   "intel>BD": "",
   "nvidia>INTL": "Rd8mmlz8 VZPP2BJo phiw6lW0 lXYIEk_4 R_O0PCrx ADFv7hgI Apjlr4Lv dvW8tKPb CJ8Gxxc4 kAuzNO9N KbTLBw0H Ql1r_Lkj QHYnJnmo liWMsxRM M2I0xKZ_ CB-mpulg BTy80QxJ kt3EZlIA PHAssOUt kiOceV4M 9UFDOABl Ez6yjldl bfgFg5D9 FQiBt4Yg 36nI-YRz w8IDrKRS 78pYN1d4 6LQKHVs4 e5jwLP98 -3_gIzkW 2hj6A9h_ B9VOTUlr 7jI4Yg91 HK39c3m8 JGjHEhiT y5iPOgMB MGQgY4o6 7ZgzVq1t 3pO-E4-x QDbJW3Bs N64H84Iz uLeqCklD i7eRVBid XtoIDxDs T6gT6QPX 0hK9_uAJ W77fIe4B gK4xyZJf vuYxy8uB TUedBAw7 KuEOdQi_ zZ2S6Kxr MtHkhu3f Yf4olQb4 DJyguw5v HxSjPLPH MlyQiL72 PBDEFB4Q c2HX_bdR TCncBrml Ef98Luou oUk6kzBS kmqRLaNz 55RJXhp8 L-q_l3sG 1fEkRlIp gg00dceJ 1G2x7DBD c3V8a4Hj RSkLOEYK LR8brfPc 1ffIcq2R PIxddZ1A lVwxg5lR 1YHmobFB RUDT0se- cB6FSBnO 6Lnt_vwc YwdYNSVM u1aXKfII 1alwxTCE MfDLD3tm 4XQNO2FM bg-NI6GF 6xJ4ec3D 8jLjihYt BQq1rW7I f1OTD9TE HroSgyUR",
   "nvidia>BD": "",
   "autodesk>INTL": "8BcdyL9w 01ZQzOn1",
   "autodesk>BD": "",
-  "hp>INTL": "PK87QCQi OZLlwG3C i9d_tHKU uCkBC4O4 sNC1_SUr LS4lv7BU B6udlVP2 blXjD9r8 XIxqqydh mVSfW1h2 7q_JZUfU j_n9gYc7 sIAtHQnK wcAWyc6- _qnDwz21 eGgjjDGl yz8OjZ6O lXtQlN2x FMMlaMnN _1ps3kUS dvo1Ntoj mdDN0xrk iXt9SElf CLAOGojZ G2IlyjvA BiPk8YvU 8mvPjmB9 LFaV4UZG eBfS5lKx PbaPkMn_ v2Il4KJp cFpK6Jk5 pyluiIK9 QETDlue4 yMNGUc32 SprGwSSq ByHhLXqp R_Zyneoi BRxUy9T0 hxZphXGl wDytocng YyKgCo-3 X6uOpeL3 vklCfA2f ygsSaiY9 h1M9hXzx ujIXpzI0 FX4gFUSC k7D0Pe1M VuAgstzE 5id9ITx0 sdZiB7A8 T6MRP-LF",
+  "hp>INTL": "PK87QCQi OZLlwG3C i9d_tHKU uCkBC4O4 sNC1_SUr LS4lv7BU B6udlVP2 blXjD9r8 XIxqqydh mVSfW1h2 7q_JZUfU j_n9gYc7 sIAtHQnK wcAWyc6- _qnDwz21 eGgjjDGl yz8OjZ6O lXtQlN2x FMMlaMnN _1ps3kUS dvo1Ntoj mdDN0xrk iXt9SElf CLAOGojZ G2IlyjvA BiPk8YvU 8mvPjmB9 LFaV4UZG eBfS5lKx PbaPkMn_ v2Il4KJp cFpK6Jk5 pyluiIK9 QETDlue4 yMNGUc32 SprGwSSq ByHhLXqp R_Zyneoi BRxUy9T0 hxZphXGl wDytocng YyKgCo-3 X6uOpeL3 vklCfA2f ygsSaiY9 h1M9hXzx ujIXpzI0 FX4gFUSC k7D0Pe1M VuAgstzE 5id9ITx0 sdZiB7A8 T6MRP-LF jm5kqTkc q_2EqMb7",
   "hp>BD": "",
   "ubisoft>INTL": "kNDNTWPu QzxIPU9b 4J73cb0c jdD4veEh dwyNhm98 S7mW3lTz atNmgGh0 uVl53fB6 S0ii9umw oWEo0xy4 zxPfshF4 0ict1leY 9pbVqelA",
   "ubisoft>BD": "",
-  "bosch>INTL": "VXGwJn1c vjA7rBfi Hl2zSC4M hwIXUwmi ol_jT4vk Ik65aAoj aobKM8vo h6-gzOtW ouAeIwcp Krtyf6N4 c8Nbl1K5 GG5D5mkW LuUgCmlv cB1E5w8R b0yND5aV FJf-0oax ba8jn8QC QYGinWPN ISqRy6wH KW4IBqS5 Jray0DMs JJGKn6Of 9SV4hBRo bfu3vtws tJ4Pqid4 jmrvyWXn Ut9AYF7u -IaWI_V0 MmuwmLI_ yaoxVODe TByJJ5iZ c3_THjzK wkPYT1OS mwnQ6xX- _8i8jsVk wfJGroMl LJTy90jG lp3p__Kw s8R7PhhI burt5RyK A7mg0t4Z db_EDYWf puAjSv3h gQ5ByFLB KgKNvF0J Mu24XB7R ghwvvyDt rcXEZk6f nCZtN4jJ muUxa-c0",
+  "bosch>INTL": "VXGwJn1c vjA7rBfi Hl2zSC4M hwIXUwmi ol_jT4vk Ik65aAoj aobKM8vo h6-gzOtW ouAeIwcp Krtyf6N4 c8Nbl1K5 GG5D5mkW LuUgCmlv cB1E5w8R b0yND5aV FJf-0oax ba8jn8QC QYGinWPN ISqRy6wH KW4IBqS5 Jray0DMs JJGKn6Of 9SV4hBRo bfu3vtws tJ4Pqid4 jmrvyWXn Ut9AYF7u -IaWI_V0 MmuwmLI_ yaoxVODe TByJJ5iZ c3_THjzK wkPYT1OS mwnQ6xX- _8i8jsVk wfJGroMl LJTy90jG lp3p__Kw s8R7PhhI burt5RyK A7mg0t4Z db_EDYWf puAjSv3h gQ5ByFLB KgKNvF0J Mu24XB7R ghwvvyDt rcXEZk6f nCZtN4jJ muUxa-c0 6esU_fw4 00YC7O-L ms9GOWzz eA3LRInO LXAJ5E1p XJr_p4w_ f2AmOI-K",
   "bosch>BD": "",
   "red-hat>INTL": "E5yz-aZE GuS_i2el bKdEIdTv 8ltIs4r2 xcZM-7-B zWAiOzq6 SjDu8NE7 mLVoKlEP 3U7yLQds 9tDljIRL 00qBzgS2 Ur0zYs_K inQp8V8n",
   "red-hat>BD": "",
@@ -2736,7 +2806,7 @@
   "meta>BD": "",
   "perplexity>INTL": "X8xJYcC3 d37GwEo4 PWoaRzZ7 9rWGvZU_ -5XgHI17 8cZ00ZcW bm9fyRIO iJA4bCA9 CvUiydmC g3w_bdwv jUuDXy1P",
   "perplexity>BD": "",
-  "xiaomi>XIAOMI": "fd49Al4T DVA_mKMU F9OKMFbC JCMFhzT5 UwSaUF58 E15PzXYy 8_eoi2fS O4FmvgWa gIPm-c6h swVBM51G T_eJEbeA xxEu0uXj gW4LPptH YNfX1WM2 MnMFPhQ9",
+  "xiaomi>XIAOMI": "fd49Al4T DVA_mKMU F9OKMFbC JCMFhzT5 UwSaUF58 E15PzXYy 8_eoi2fS O4FmvgWa gIPm-c6h swVBM51G T_eJEbeA xxEu0uXj gW4LPptH YNfX1WM2 MnMFPhQ9 fPgtYzob",
   "xiaomi>BD": ""
  }
 }
